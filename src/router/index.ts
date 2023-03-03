@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Dashboard",
     component: DashboardView,
-  },
+  }
 ];
 
 const router = createRouter({

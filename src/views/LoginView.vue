@@ -1,9 +1,26 @@
 <template>
   <div>"Hello, Here is the {{ Page }}";</div>
   <div>
-    <router-link to="/verify-login">
-      <button>LOGIN</button>
-    </router-link>
+    <input
+      id="email"
+      ref="email"
+      v-model="email"
+      class=""
+      type="email"
+      required
+      placeholder="Email"
+      @input="autofillDomain"
+    />
+    <input
+      id="domain"
+      ref="domain"
+      v-model="domain"
+      class=""
+      type="domain"
+      required
+      placeholder="Domain"
+    />
+    <button type="submit" @click.prevent="login" :disabled="!isValidEmail" >Login</button>
   </div>
 </template>
 
@@ -14,25 +31,41 @@ export default defineComponent({
   data() {
     return {
       Page: "Login Page!",
-      EmailAddress: "",
-      company: "",
+      email: "",
+      domain: "",
+      error: "",
     };
   },
-  try() {
-    axios
-      .post("/api/authenticate", {
-        EmailAddress: this.EmailAddress,
-        company: this.company,
-      })
-      .then((response) => {
-        // Store the access token in local storage or a cookie
-        localStorage.setItem("access_token", response.data.access_token);
-        // Redirect the user to the main page
-        this.$router.push("/");
-      })
-      .catch((error) => {
+  methods: {
+    async login() {
+      try {
+        const response = await axios.post(
+          "https://api.wired.sowlutions.com/api/v2/signin",
+          {
+            email: this.email,
+            domain: this.domain,
+          }
+        );
+        console.log(response.data);
+        // Route to the next page if login is successful
+        this.$router.push("/verify-login");
+      } catch (error) {
         console.error(error);
-      });
+        this.error = "Invalid email or domain";
+      }
+    },
+    autofillDomain():void {
+      const atIndex = this.email.indexOf("@");
+      if (atIndex !== -1) {
+        this.domain = this.email.slice(atIndex + 1);
+      }
+    },
+  },
+  computed: {
+    isValidEmail(): boolean {
+      const emailRegex = /\S+@\S+\.\S+/
+      return emailRegex.test(this.email)
+    }
   },
 });
 </script>
