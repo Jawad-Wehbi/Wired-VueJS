@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import LoginView from "../views/LoginView.vue";
-import VerifyLogin from "../views/VerifyLogin.vue";
-import DashboardView from "../views/DashboardView.vue";
+import LoginView from "../views/LoginView/LoginView.vue";
+import VerifyLogin from "../views/VerifyLogin/VerifyLogin.vue";
+import DashboardView from "../views/DashboardView/DashboardView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
