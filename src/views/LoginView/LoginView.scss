@@ -1,0 +1,76 @@
+// Styling for the input element
+.input {
+  font-size: 16px;
+  border: none;
+  width: 50px;
+  border: medium solid #fff;
+  background-color: #fff;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  font:inherit
+}
+body {
+  background-image: url("../../assets/wired-bg.jpeg");
+  background-size:  100vw 100vh ;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  // overflow: hidden;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+.logo{
+  height: 45px;
+  width: 45px;
+}
+
+.item {
+  width: 640px;
+  height: 48px;
+  // text-align: center;
+}
+.wired-font{
+  color:#fff;
+  font-size: 25px;
+  font-family:sans-serif;
+}
+.input{
+  border: medium solid #fff;
+    background-color: #fff;
+    padding-left: 1rem;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    height: 48px;
+    margin: 10px;
+    padding: 20px;
+    font-family:sans-serif;
+}
+.inline-block {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+}
+.button{
+  margin: 10px;
+  padding: 20px;
+  background-color: rgba(138,84,89,.8);
+  font-family:sans-serif;
+  font-size: 16px;
+  color:#fff;
+}
+
+// .background-image{
+//   background-image: url(../../assets/wired-bg.jpeg);
+//   height: 100%;
+//   width: 100%;
+//   object-fit: contain;
+
+// }
