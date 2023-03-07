@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 export default defineComponent({
-  name: "InputComponent",
+  name: 'InputComponent',
   props: {
     id: {
       type: String,
@@ -19,26 +19,26 @@ export default defineComponent({
     },
     type: {
       type: String,
-      default: "text",
+      default: 'text',
     },
     value: {
       type: String,
-      default: "",
+      default: '',
     },
     placeholder: {
       type: String,
-      default: "",
+      default: '',
     },
   },
   methods: {
     updateValue(event: Event) {
-      const target = event.target as HTMLInputElement;
-      this.$emit("update:value", target.value);
+      // const target = event.target as HTMLInputElement;
+      // this.$emit("update:value", target.value);
     },
   },
 });
 </script>
 
 <style scoped>
-@import "InputComponent.scss";
+@import 'InputComponent.scss';
 </style>
