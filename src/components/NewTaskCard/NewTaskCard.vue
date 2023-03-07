@@ -1,27 +1,4 @@
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  data() {
-    return {
-      SelectProject:"",
-      SelectCategory:"",
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-
-    };
-  },
-      computed: {
-        selectDisplay(): string {
-          return this.SelectProject ? "block" : "none";
-        },
-      },
-});
-</script>
+<script lang="ts" src="./NewTaskCard"></script>
 
 <template>
   <div class="card">
@@ -35,10 +12,10 @@ export default defineComponent({
         class="form-item"
         :items="items"
       >
-    </v-select>
+      </v-select>
 
       <v-select
-          v-model="SelectCategory"
+        v-model="SelectCategory"
         id="selcetCategory"
         label="Select Category"
         :style="{ display: selectDisplay }"
@@ -48,7 +25,7 @@ export default defineComponent({
 
       <div class="">
         <!-- @click="submit" -->
-        <v-btn color="success" class="form-item">
+        <v-btn color="success" class="form-item" :disabled="isCategorySelected">
           <v-icon class="white" icon="mdi-pencil"></v-icon>
           Create Task
         </v-btn>

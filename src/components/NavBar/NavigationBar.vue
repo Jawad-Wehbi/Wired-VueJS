@@ -1,12 +1,4 @@
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  data() {
-    return {};
-  },
-});
-</script>
+<script lang="ts" src="./NavigationBar"></script>
 
 <template>
   <nav class="navbar">
@@ -19,9 +11,9 @@ export default defineComponent({
         <v-icon class="white" icon="mdi-account-circle"></v-icon>
       </button>
       <div class="white profile-name">Jawad Wehbi</div>
-      <div class="white ">
+      <div class="white">
         <button class="sign-out">
-          <v-icon class=" sign-out-icon" icon="mdi-logout"></v-icon>
+          <v-icon class="sign-out-icon" icon="mdi-logout"></v-icon>
           SIGNOUT
         </button>
       </div>
