@@ -8,12 +8,18 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/font": "^7.1.96",
+    "@mdi/js": "^7.1.96",
     "core-js": "^3.8.3",
+    "material-design-icons-iconfont": "^6.7.0",
     "vue": "^3.2.13",
     "vue-cookies": "^1.8.3",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vuetify": "^3.1.7"
   },
   "devDependencies": {
+    "@types/vue": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
