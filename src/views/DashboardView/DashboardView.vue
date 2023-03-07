@@ -1,12 +1,14 @@
 <template>
   <section>
     <NavigationBar/>
+    <NewTaskCard/>
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import NavigationBar from "../../components/NavBar/NavigationBar.vue"
+import NewTaskCard from "../../components/NewTaskCard/NewTaskCard.vue"
 export default defineComponent({
   data() {
     return {
@@ -14,7 +16,7 @@ export default defineComponent({
     };
     
   },
-  components:{NavigationBar}
+  components:{NavigationBar, NewTaskCard}
 });
 </script>
 
