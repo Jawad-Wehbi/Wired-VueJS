@@ -1,0 +1,9 @@
+.timer-container{
+  width: 320px;
+  height:48px;
+  padding:12px;
+  margin: 16px;
+  background-color: $success-color;
+  @include flex-box(row,space-between, center);
+  font-weight: 500;
+}
