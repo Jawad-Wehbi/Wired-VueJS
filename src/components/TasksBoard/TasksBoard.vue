@@ -1,7 +1,7 @@
 <template>
-  <section>
     <div class="board-title">
-      <v-icon icon="mdi-laptop" size="small"></v-icon>" "My Tasks
+      <v-icon icon="mdi-laptop" size="small"></v-icon>
+      <div class="my-tasks">My Tasks</div>
     </div>
     <div class="Container">
       <div class="fixed-card"><NewTaskCard /></div>
@@ -12,7 +12,6 @@
         <TaskCard />
       </div>
     </div>
-  </section>
 </template>
 
 <script lang="ts" src="./TasksBoard"></script>
