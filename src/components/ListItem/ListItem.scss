@@ -1,0 +1,13 @@
+.item-list{
+  height: 56px;
+  padding-inline: 16px;
+  background-color: $white;
+  @include flex-box(row,space-between,center)
+}
+.left-sec{
+  font-size: 13px;
+  @include flex-box(column);
+}
+.working-task{
+  color: #535355;
+}
