@@ -1,0 +1,12 @@
+.list-button{
+  color: $white;
+  width: 250px;
+  height: 36px;
+  margin: 0px 0px 0px 8px;
+  padding: 0px 8px;
+  font-size: 14px;
+  border-radius: 18px;
+  background-color: $secondary-color;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+  @include flex-box(row,center, center);
+}
