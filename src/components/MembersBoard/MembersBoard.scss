@@ -1,0 +1,25 @@
+.members-title {
+  font-size: 20px;
+  height: 56px;
+  background-color: $white;
+  margin-top: 30px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 4px 16px;
+  @include flex-box(row, flex-start, center);
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+.members-container{
+  @include flex-box(column);
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+.list-bottom{
+  background-color: $white;
+  height: 52px;
+  margin-top: 1px;
+  @include flex-box(row, space-around, center);
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+}
