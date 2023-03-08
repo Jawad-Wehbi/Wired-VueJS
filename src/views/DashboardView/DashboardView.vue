@@ -1,21 +1,21 @@
 <template>
   <section>
     <NavigationBar />
-    <NewTaskCard />
-    <TaskCard />
+    <TimerComponent />
+    <TasksBoard />
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NavigationBar from '../../components/NavBar/NavigationBar.vue';
-import NewTaskCard from '../../components/NewTaskCard/NewTaskCard.vue';
-import TaskCard from '../../components/TaskCard/TaskCard.vue';
+import TasksBoard from '@/components/TasksBoard/TasksBoard.vue';
+import TimerComponent from '@/components/TimerComponent/TimerComponent.vue';
 export default defineComponent({
   data() {
     return {};
   },
-  components: { NavigationBar, NewTaskCard, TaskCard },
+  components: { NavigationBar, TimerComponent, TasksBoard },
 });
 </script>
 
