@@ -1,0 +1,56 @@
+.sheet {
+  background-color: $success-color;
+  height: 285px;
+  width: 336px;
+  margin: 30px;
+  padding: 4px;
+  padding-bottom: 16px;
+}
+
+.task-subtitle {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.upper-right {
+  font-size: 12px;
+  text-align: right;
+}
+.upper {
+  padding: 9px 16px;
+  @include flex-box(row, space-between);
+}
+.day {
+  align-content: end;
+}
+.round-button {
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  background-color: $buttons-background;
+}
+.buttons{
+  width:142px;
+  @include flex-box(row,space-between, center)
+}
+.mid-card {
+  width: 324px;
+  height: 46px;
+  @include flex-box(row,center,center)
+}
+// .round-button-icon {
+//   width: 10px;
+//   height:10px;
+// }
+.input-note{
+  width:100%;
+  background-color: $white;
+}
+.text-area{
+  margin: 0px 16px;
+  // background-color: $white;
+
+}
+.v-input__details{
+  display: none;
+}
