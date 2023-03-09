@@ -1,0 +1,3 @@
+.member-details {
+  @include flex-box(column, space-evenly, center);
+}
