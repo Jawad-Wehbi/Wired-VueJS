@@ -15,4 +15,14 @@ export default defineComponent({
       }
     },
   },
+  props: {
+    showButton: {
+      type: Boolean,
+      default: false,
+    },
+    showName: {
+      type: Boolean,
+      default: false,
+    },
+  },
 });

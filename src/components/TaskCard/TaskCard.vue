@@ -4,6 +4,7 @@
   <div class="sheet" :style="{ backgroundColor: sheetColor }">
     <div class="upper">
       <div class="upper-left">
+        <div class="memberName" v-if="showName">Marc Saad</div>
         <div class="task-title">Wired</div>
         <div class="task-subtitle">Web</div>
       </div>
@@ -13,7 +14,7 @@
         <div class="task-total-timing">Total: 00:15:00</div>
       </div>
     </div>
-    <div class="mid-card">
+    <div class="mid-card" v-if="showButton">
       <div class="buttons">
         <button class="play-pause round-button" @click="togglePlay">
           <v-icon size="x-small" icon="mdi-play"></v-icon>
