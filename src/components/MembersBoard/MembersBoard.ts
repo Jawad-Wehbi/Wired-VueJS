@@ -10,6 +10,9 @@ export default defineComponent({
     togglelistItem() {
       this.$emit('showMemberTasks');
     },
+    toggleDetails() {
+      this.$emit('showTeamDetails');
+    },
   },
   components: { ListItem, ListButtons, ButtonSection },
 });

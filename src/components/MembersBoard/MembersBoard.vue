@@ -6,13 +6,17 @@
     </div>
     <div class="members-container">
       <ListItem @click="togglelistItem" />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      <ListItem @click="togglelistItem" />
+      <ListItem @click="togglelistItem" />
+      <ListItem @click="togglelistItem" />
     </div>
     <div class="list-bottom">
       <ListButtons listIcon="mdi-refresh" listButtonName="RELOAD" />
-      <ListButtons listIcon="mdi-account-details" listButtonName="DETAILS" />
+      <ListButtons
+        listIcon="mdi-account-details"
+        listButtonName="DETAILS"
+        @click="toggleDetails"
+      />
       <ListButtons listIcon="mdi-notebook" listButtonName="PLANS" />
     </div>
   </div>

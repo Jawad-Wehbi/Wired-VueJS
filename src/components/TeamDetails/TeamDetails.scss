@@ -1,0 +1,6 @@
+.team-details{
+  margin-top: 50px;
+  overflow-x: scroll;
+  @include flex-box(row,flex-start, center)
+}
+
