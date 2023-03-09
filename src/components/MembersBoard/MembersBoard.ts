@@ -6,5 +6,10 @@ export default defineComponent({
   data() {
     return {};
   },
+  methods: {
+    togglelistItem() {
+      this.$emit('showMemberTasks');
+    },
+  },
   components: { ListItem, ListButtons, ButtonSection },
 });
