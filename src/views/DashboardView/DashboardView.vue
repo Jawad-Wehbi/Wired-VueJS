@@ -5,7 +5,7 @@
       <TimerComponent />
       <ButtonSection />
       <TasksBoard />
-      <MembersBoard />
+      <TeamSection />
     </div>
   </section>
 </template>
@@ -16,7 +16,7 @@ import NavigationBar from '../../components/NavBar/NavigationBar.vue';
 import TasksBoard from '@/components/TasksBoard/TasksBoard.vue';
 import TimerComponent from '@/components/TimerComponent/TimerComponent.vue';
 import ButtonSection from '@/components/ButtonSection/ButtonSection.vue';
-import MembersBoard from '@/components/MembersBoard/MembersBoard.vue';
+import TeamSection from '@/components/TeamSection/TeamSection.vue';
 export default defineComponent({
   data() {
     return {};
@@ -26,7 +26,7 @@ export default defineComponent({
     TimerComponent,
     TasksBoard,
     ButtonSection,
-    MembersBoard,
+    TeamSection,
   },
 });
 </script>

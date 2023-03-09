@@ -1,0 +1,11 @@
+.team-section-container{
+  @include flex-box(row, space-evenly);
+}
+.team-tasks-container{
+  width:100%;
+  margin-top: 30px;
+  margin-left: 5px;
+}
+.team-board-container{
+  width:100%
+}
