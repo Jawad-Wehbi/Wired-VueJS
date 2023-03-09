@@ -17,7 +17,6 @@ import MainButton from '../MainButton/MainButton'; import ButtonSection from
     <ListButtons listIcon="mdi-account-details" listButtonName="DETAILS" />
     <ListButtons listIcon="mdi-notebook" listButtonName="PLANS" />
   </div>
-  <MainButton />
 </template>
 
 <script lang="ts" src="./MembersBoard"></script>
