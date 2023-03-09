@@ -1,10 +1,10 @@
 <template>
-  <div class="timer-container">
+  <div class="timer-container" :style="computedStyles">
     <div>
-      <v-icon icon="mdi-laptop"></v-icon>
+      <v-icon v-if="icon" size="small">{{ icon }}</v-icon>
     </div>
-    <div>Total Work Time</div>
-    <div>00:00:00</div>
+    <div>{{ TimerTitle }}</div>
+    <div>{{ Timer }}</div>
   </div>
 </template>
 

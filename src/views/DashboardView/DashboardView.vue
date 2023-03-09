@@ -2,7 +2,7 @@
   <section>
     <NavigationBar />
     <div class="wired-page">
-      <TimerComponent />
+      <TimerSection />
       <ButtonSection />
       <TasksBoard />
       <TeamSection />
@@ -14,7 +14,7 @@
 import { defineComponent } from 'vue';
 import NavigationBar from '../../components/NavBar/NavigationBar.vue';
 import TasksBoard from '@/components/TasksBoard/TasksBoard.vue';
-import TimerComponent from '@/components/TimerComponent/TimerComponent.vue';
+import TimerSection from '@/components/TimerSection/TimerSection.vue';
 import ButtonSection from '@/components/ButtonSection/ButtonSection.vue';
 import TeamSection from '@/components/TeamSection/TeamSection.vue';
 export default defineComponent({
@@ -23,7 +23,7 @@ export default defineComponent({
   },
   components: {
     NavigationBar,
-    TimerComponent,
+    TimerSection,
     TasksBoard,
     ButtonSection,
     TeamSection,

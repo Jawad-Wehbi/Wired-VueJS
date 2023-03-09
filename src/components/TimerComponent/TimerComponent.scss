@@ -2,8 +2,8 @@
   width: 320px;
   height:48px;
   padding:12px;
-  margin-block: 16px;
-  background-color: $success-color;
+  margin: 8px 16px 8px 0px;
   @include flex-box(row,space-between, center);
   font-weight: 600;
+  border-radius: 5px;
 }
