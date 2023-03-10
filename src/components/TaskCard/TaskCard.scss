@@ -14,7 +14,7 @@
 .ended {
   background-color: gray;
 }
-.display{
+.display-none{
   display: none;
 }
 .task-subtitle {
@@ -40,7 +40,7 @@
   background-color: $buttons-background;
 }
 .buttons {
-  width: 192px;
+  width: 142px;
   @include flex-box(row, space-evenly, center);
 }
 .mid-card {

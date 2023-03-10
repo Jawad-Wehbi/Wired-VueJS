@@ -9,6 +9,7 @@ export default defineComponent({
   data() {
     return {
       result: [] as TaskRecord[],
+      taskId: 0,
     };
   },
   async mounted() {
@@ -16,6 +17,7 @@ export default defineComponent({
       const response = await get('/tasks');
       console.log('========>', response.data);
       this.result = response.data.data.items;
+      this.runningTaskId();
     } catch (error) {
       console.error(error);
     }
@@ -28,6 +30,15 @@ export default defineComponent({
       return this.result.filter((items) => {
         const itemDate = parseISO(items.first_log.start_date);
         return isSameDay(today, itemDate);
+      });
+    },
+  },
+  methods: {
+    runningTaskId(): void {
+      this.result.filter((task) => {
+        if (task.status == 'started') {
+          this.taskId = task.id;
+        }
       });
     },
   },

@@ -29,30 +29,33 @@
       <div class="buttons">
         <button
           class="play round-button"
-          :class="{ display: TaskDetails.status == 'started' }"
+          :class="playButton"
+          @click="playTask(TaskDetails.id)"
         >
           <v-icon size="x-small" icon="mdi-play"></v-icon>
         </button>
         <button
           class="pause round-button"
-          :class="{ display: TaskDetails.status == 'paused' }"
-          @click="playTask()"
+          :class="pauseButton"
+          @click="pauseTask(TaskDetails.id)"
         >
           <v-icon size="x-small" icon="mdi-pause"></v-icon>
         </button>
         <button
           class="reload round-button"
-          :class="{ display: TaskDetails.status == 'paused' || 'started' }"
+          :class="reloadButton"
+          @click="unendTask(TaskDetails.id)"
         >
           <v-icon size="x-small" icon="mdi-reload"></v-icon>
         </button>
-        <button
-          class="save round-button"
-          :class="{ display: TaskDetails.status == 'started' }"
-        >
+        <button class="save round-button">
           <v-icon size="x-small" icon="mdi-content-save"></v-icon>
         </button>
-        <button class="delete round-button">
+        <button
+          class="delete round-button"
+          :class="TaskDetails.status == 'started' && 'display-none'"
+          @click="deleteTask(TaskDetails.id)"
+        >
           <v-icon size="x-small" icon="mdi-delete"></v-icon>
         </button>
       </div>
@@ -61,7 +64,7 @@
       <v-textarea
         placeholder="Notes"
         bg-color="white"
-        :value="TaskDetails.notes"
+        v-model="noteMessage"
       ></v-textarea>
     </div>
   </div>

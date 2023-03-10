@@ -11,6 +11,7 @@
         :TaskDetails="item"
         v-for="item in todayData"
         :key="item.id"
+        :runningTaskId="taskId"
       />
     </div>
   </div>
