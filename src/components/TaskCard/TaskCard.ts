@@ -1,17 +1,20 @@
 import { defineComponent } from 'vue';
-
+import { TaskRecord } from 'DataTypes';
+import { post } from '@/service';
 export default defineComponent({
   data() {
     return {
-      sheetColor: '#86ddb6',
+      result: [] as TaskRecord[],
     };
   },
   methods: {
-    togglePlay() {
-      if (this.sheetColor === '#86ddb6') {
-        this.sheetColor = '#e16774cc';
-      } else {
-        this.sheetColor = '#86ddb6';
+    async playTask() {
+      try {
+        const response = await post('/tasks/:id/start');
+        console.log('========>', response.data);
+        this.result = response.data.data.items;
+      } catch (error) {
+        console.error(error);
       }
     },
   },
@@ -26,7 +29,7 @@ export default defineComponent({
     },
     TaskDetails: {
       type: Object,
-      default: false,
+      required: true,
     },
   },
 });

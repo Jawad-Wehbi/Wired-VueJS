@@ -5,8 +5,13 @@
   </div>
   <div class="Container">
     <div class="fixed-card"><NewTaskCard /></div>
-    <div class="relative-cards" v-for="item in result">
-      <TaskCard showButton="true" TaskDetails="{{" item }} />
+    <div class="relative-cards">
+      <TaskCard
+        showButton="true"
+        :TaskDetails="item"
+        v-for="item in todayData"
+        :key="item.id"
+      />
     </div>
   </div>
 </template>
