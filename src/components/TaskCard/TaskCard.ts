@@ -24,5 +24,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    TaskDetails: {
+      type: Object,
+      default: false,
+    },
   },
 });

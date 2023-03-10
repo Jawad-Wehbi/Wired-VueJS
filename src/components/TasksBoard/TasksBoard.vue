@@ -5,11 +5,8 @@
   </div>
   <div class="Container">
     <div class="fixed-card"><NewTaskCard /></div>
-    <div class="relative-cards">
-      <TaskCard showButton="true" />
-      <TaskCard showButton="true" />
-      <TaskCard showButton="true" />
-      <TaskCard showButton="true" />
+    <div class="relative-cards" v-for="item in result">
+      <TaskCard showButton="true" TaskDetails="{{" item }} />
     </div>
   </div>
 </template>

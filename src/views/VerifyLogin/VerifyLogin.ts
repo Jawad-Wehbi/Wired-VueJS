@@ -22,7 +22,17 @@ export default defineComponent({
         );
         console.log(response.data);
         // Save data to local storage
-        localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem('auth_token', response.data.data.auth_token);
+        localStorage.setItem('email', response.data.data.email);
+        localStorage.setItem('first_name', response.data.data.first_name);
+        localStorage.setItem('last_name', response.data.data.last_name);
+        localStorage.setItem('full_name', response.data.data.full_name);
+        localStorage.setItem('id', JSON.stringify(response.data.data.id));
+        localStorage.setItem('information', response.data.data.information);
+        localStorage.setItem('initials', response.data.data.initials);
+        localStorage.setItem('team_admin', response.data.data.team_admin);
+        localStorage.setItem('team_id', response.data.data.team_id);
+        localStorage.setItem('user_status', response.data.data.user_status);
 
         // Save auth token to cookies
         // this.$cookies.set("Authorization", this.auth_token);

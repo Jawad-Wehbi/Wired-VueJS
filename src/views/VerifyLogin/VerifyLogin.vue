@@ -24,7 +24,6 @@
   </div>
 </template>
 
-<script lang="ts" src="./VerifyLogin">
-</script>
+<script lang="ts" src="./VerifyLogin"></script>
 
 <style lang="scss" src="../LoginView/LoginView.scss"></style>
