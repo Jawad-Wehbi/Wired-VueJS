@@ -6,6 +6,10 @@ export default defineComponent({
     return {
       result: [] as TaskRecord[],
       noteMessage: this.TaskDetails.notes,
+      startTime: 0,
+      totalTime: 0,
+      isRunning: false,
+      interval: 0,
     };
   },
   mounted() {
@@ -48,6 +52,21 @@ export default defineComponent({
       } catch (error) {
         console.error(error);
       }
+    },
+    start() {
+      this.isRunning = true;
+      this.startTime = Date.now();
+      this.interval = setInterval(this.updateTime, 10);
+    },
+    stop() {
+      this.isRunning = false;
+      clearInterval(this.interval);
+    },
+    updateTime() {
+      const endTime = Date.now();
+      const deltaTime = endTime - this.startTime;
+      this.totalTime += deltaTime;
+      this.startTime = endTime;
     },
   },
   props: {
@@ -95,6 +114,15 @@ export default defineComponent({
         return 'display-none';
       }
       return '';
+    },
+    formatTime() {
+      const totalSeconds = Math.floor(this.totalTime / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      const milliseconds = Math.floor((this.totalTime % 1000) / 10);
+      return `${minutes.toString().padStart(2, '0')}:${seconds
+        .toString()
+        .padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
     },
   },
 });

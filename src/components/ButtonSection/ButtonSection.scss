@@ -1,36 +1,57 @@
-.buttons-container{
-  box-shadow: rgba(0,0,0,.2),rgba(0,0,0,.14), rgba(0,0,0,.12)!important;
+.buttons-container {
+  box-shadow: rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.12) !important;
   margin-block: 32px;
   @include flex-box(row);
-  flex-wrap:wrap
+  flex-wrap: wrap;
 }
-.all-tasks-overlay{
+.all-tasks-overlay {
   width: 70vw;
   height: 85vh;
   @include flex-box(column, space-between, center);
   background-color: $white;
   border-radius: 4px;
 }
-.overlay-title{
+.overlay-title {
   font-size: 20px;
   padding: 4px 16px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   color: $white;
-  height:64px;
+  height: 64px;
   background-color: $primary-color;
   top: 0px;
   width: 100%;
-  @include flex-box(row,flex-start,center)
+  @include flex-box(row, space-between, center);
 }
-.all-tasks{
+.all-tasks {
   margin-left: 5px;
 }
-.tasks-list{
+.tasks-list {
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
     0 1px 5px 0 rgb(0 0 0 / 12%);
   background-color: #fff;
   @include flex-box(row, center, center);
   flex-wrap: wrap;
   overflow-y: auto;
+}
+.add-shortcut-overlay {
+  background-color: $white;
+  width: 640px;
+  height: 228px;
+}
+.add-shortcut-title {
+  color: $white;
+  background-color: $primary-color;
+  width: 640px;
+  height: 48px;
+  padding: 0px 16px;
+  @include flex-box(row, flex-start, center);
+}
+.create-shortcut{
+  margin-left: 5px;
+  font-size: 20px;
+}
+.create-shortcut-form{
+  @include flex-box(column,space-evenly,center );
+  flex-flow: column;
 }

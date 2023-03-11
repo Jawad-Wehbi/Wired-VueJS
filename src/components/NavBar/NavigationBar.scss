@@ -46,7 +46,56 @@ nav {
   padding: 0px 12.5px;
   margin: 14px 8px;
 }
-
+.title {
+  @include flex-box(row, flex-start, center);
+}
 .sign-out-icon {
   size: 18px 18px;
+}
+.edit-name-overlay {
+  background-color: $white;
+  width: 800px;
+  height: 268px;
+}
+.edit-name-title {
+  background-color: $primary-color;
+  color: $white;
+  height: 48px;
+  padding: 0px 16px;
+  @include flex-box(row, space-between, center);
+}
+.account-info {
+  margin-left: 5px;
+}
+.edit-name-form {
+  padding: 16px;
+  @include flex-box(column, space-evenly, center);
+}
+.edit-button {
+  height: 36px;
+  width: 66px;
+  color: $white;
+  background-color: $secondary-color;
+}
+.name-input {
+  @include flex-box(row, space-evenly, center);
+}
+.save-reset-buttons {
+  @include flex-box(row, space-between, center);
+}
+.reset {
+  background-color: #ff5252;
+}
+.save {
+  background-color: $secondary-color;
+}
+.button {
+  width: 100px;
+  height: 36px;
+  font-size: 12px;
+  @include flex-box(row, center, center)
+}
+.input{
+  width: 620px;
+  height: 40px;
 }

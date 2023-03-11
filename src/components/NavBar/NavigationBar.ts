@@ -2,6 +2,8 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   data() {
-    return {};
+    return {
+      editNameDialog: false,
+    };
   },
 });

@@ -7,8 +7,55 @@
       <span class="wired-font">WIRED</span>
     </div>
     <div class="right-sec">
-      <button class="edit-name">
+      <button class="edit-name" @click="editNameDialog = true">
         <v-icon class="white" icon="mdi-account-circle"></v-icon>
+        <v-dialog v-model="editNameDialog" width="auto" center>
+          <div class="edit-name-overlay">
+            <div class="edit-name-title">
+              <div class="title">
+                <v-icon icon="mdi-account-circle" size="small"></v-icon>
+                <div class="account-info">Account Information</div>
+              </div>
+              <div>
+                <v-icon
+                  icon="mdi-close"
+                  size="small"
+                  @click="editNameDialog = false"
+                ></v-icon>
+              </div>
+            </div>
+            <div class="edit-name-form">
+              <div class="name-input">
+                <v-text-field
+                  model-value="John"
+                  label="Fist Name"
+                  variant="outlined"
+                  readonly
+                  class="input"
+                ></v-text-field>
+                <button class="edit-button">EDIT</button>
+              </div>
+              <div class="name-input">
+                <v-text-field
+                  model-value="Doe"
+                  label="Last Name"
+                  variant="outlined"
+                  readonly
+                  class="input"
+                ></v-text-field>
+                <button class="edit-button">EDIT</button>
+              </div>
+              <div class="save-reset-buttons">
+                <button class="save button">
+                  <v-icon icon="mdi-content-save-edit"></v-icon>SAVE
+                </button>
+                <button class="reset button">
+                  <v-icon icon="mdi-restore"></v-icon>RESET
+                </button>
+              </div>
+            </div>
+          </div>
+        </v-dialog>
       </button>
       <div class="white profile-name">Jawad Wehbi</div>
       <div class="white">
