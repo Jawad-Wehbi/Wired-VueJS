@@ -25,25 +25,33 @@
               </div>
             </div>
             <div class="edit-name-form">
-              <div class="name-input">
-                <v-text-field
-                  model-value="John"
-                  label="Fist Name"
-                  variant="outlined"
-                  readonly
-                  class="input"
-                ></v-text-field>
-                <button class="edit-button">EDIT</button>
+              <div class="first input">
+                <div>
+                  <v-text-field
+                    model-value="John"
+                    label="Fist Name"
+                    variant="outlined"
+                    readonly
+                    class="text-field"
+                  ></v-text-field>
+                </div>
+                <div>
+                  <button class="edit-button">EDIT</button>
+                </div>
               </div>
-              <div class="name-input">
-                <v-text-field
-                  model-value="Doe"
-                  label="Last Name"
-                  variant="outlined"
-                  readonly
-                  class="input"
-                ></v-text-field>
-                <button class="edit-button">EDIT</button>
+              <div class="second input">
+                <div>
+                  <v-text-field
+                    model-value="Doe"
+                    label="Last Name"
+                    variant="outlined"
+                    readonly
+                    class="text-field"
+                  ></v-text-field>
+                </div>
+                <div>
+                  <button class="edit-button">EDIT</button>
+                </div>
               </div>
               <div class="save-reset-buttons">
                 <button class="save button">

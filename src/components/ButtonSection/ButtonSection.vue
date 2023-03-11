@@ -18,9 +18,9 @@
       icon="mdi-checkbox-marked"
       buttonName="SHOW ALL TASKS"
       :styles="{ color: 'white', backgroundColor: '#1976d2' }"
-      @click="dialog = true"
+      @click="allTasksDialog = true"
     />
-    <v-dialog v-model="dialog" width="auto" center>
+    <v-dialog v-model="allTasksDialog" width="auto" center>
       <div class="all-tasks-overlay">
         <div class="overlay-title">
           <div>

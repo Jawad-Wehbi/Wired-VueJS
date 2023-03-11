@@ -18,6 +18,27 @@
         @click="toggleDetails"
       />
       <ListButtons listIcon="mdi-notebook" listButtonName="PLANS" />
+      <v-dialog v-model="plansDialog" width="auto" center>
+        <div class="all-tasks-overlay">
+          <div class="overlay-title">
+            <div>
+              <v-icon icon="mdi-laptop" size="small"></v-icon>
+              <div class="all-tasks">All Tasks</div>
+            </div>
+            <div>
+              <v-icon icon="mdi-close" size="small"></v-icon>
+            </div>
+          </div>
+          <div class="tasks-list">
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+          </div>
+        </div>
+      </v-dialog>
     </div>
   </div>
 </template>

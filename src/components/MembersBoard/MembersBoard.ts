@@ -4,7 +4,9 @@ import ListButtons from '../ListButtons/ListButtons.vue';
 import ButtonSection from '../ButtonSection/ButtonSection.vue';
 export default defineComponent({
   data() {
-    return {};
+    return {
+      plansDialog: false,
+    };
   },
   methods: {
     togglelistItem() {

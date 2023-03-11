@@ -6,7 +6,7 @@ export default defineComponent({
   data() {
     return {
       addShortcutDialog: false,
-      dialog: false,
+      allTasksDialog: false,
       items: [
         { title: 'Click Me' },
         { title: 'Click Me' },
