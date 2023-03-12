@@ -21,7 +21,7 @@
       </div>
       <div class="upper-right">
         <div class="day">Today</div>
-        <div class="task-current-timing">Current: {{ formatTime }}</div>
+        <div class="task-current-timing">Current: {{ time }}</div>
         <div class="task-total-timing">Total: 00:15:00</div>
       </div>
     </div>

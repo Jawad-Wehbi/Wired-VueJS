@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { TaskRecord } from 'DataTypes';
 import { deleteData, post, put } from '@/service';
 export default defineComponent({
@@ -6,23 +6,26 @@ export default defineComponent({
     return {
       result: [] as TaskRecord[],
       noteMessage: this.TaskDetails.notes,
-      startTime: 0,
-      totalTime: 0,
-      isRunning: false,
-      interval: 0,
     };
   },
-  mounted() {
-    console.log(this.runningTaskId);
-  },
   methods: {
+    reloadPage() {
+      window.location.reload();
+    },
     async playTask(id: number) {
       try {
-        const pauseresponse = await post(`/tasks/${this.runningTaskId}/stop`);
+        if (this.runningTaskId != 0) {
+          const pauseresponse = await post(`/tasks/${this.runningTaskId}/stop`);
+          this.result = pauseresponse.data.data.items;
+        }
         const response = await post(`/tasks/${id}/start`);
         console.log('========>', response.data);
-        this.result = pauseresponse.data.data.items;
         this.result = response.data.data.items;
+        window.location.reload();
+        const mounted = () => {
+          this.start();
+        };
+        return mounted;
       } catch (error) {
         console.error(error);
       }
@@ -32,6 +35,8 @@ export default defineComponent({
         const response = await post(`/tasks/${id}/stop`);
         console.log('========>', response.data);
         this.result = response.data.data.items;
+        window.location.reload();
+        return this.reset();
       } catch (error) {
         console.error(error);
       }
@@ -41,6 +46,7 @@ export default defineComponent({
         const response = await put(`/tasks/${id}/unend`);
         console.log('========>', response.data);
         this.result = response.data.data.items;
+        window.location.reload();
       } catch (error) {
         console.error(error);
       }
@@ -49,24 +55,10 @@ export default defineComponent({
       try {
         const response = await deleteData(`/tasks/${id}`);
         console.log('========>', response.data);
+        window.location.reload();
       } catch (error) {
         console.error(error);
       }
-    },
-    start() {
-      this.isRunning = true;
-      this.startTime = Date.now();
-      this.interval = setInterval(this.updateTime, 10);
-    },
-    stop() {
-      this.isRunning = false;
-      clearInterval(this.interval);
-    },
-    updateTime() {
-      const endTime = Date.now();
-      const deltaTime = endTime - this.startTime;
-      this.totalTime += deltaTime;
-      this.startTime = endTime;
     },
   },
   props: {
@@ -115,14 +107,71 @@ export default defineComponent({
       }
       return '';
     },
-    formatTime() {
-      const totalSeconds = Math.floor(this.totalTime / 1000);
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
-      const milliseconds = Math.floor((this.totalTime % 1000) / 10);
-      return `${minutes.toString().padStart(2, '0')}:${seconds
-        .toString()
-        .padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
-    },
+  },
+  setup() {
+    const time = ref('00:00:00');
+    let timeBegan: Date | null = null;
+    let timeStopped: Date | null = null;
+    let stoppedDuration = 0;
+    let started: NodeJS.Timeout | null = null;
+    let running = false;
+
+    function start() {
+      if (running) return;
+
+      if (timeBegan === null) {
+        reset();
+        timeBegan = new Date();
+      }
+
+      if (timeStopped !== null) {
+        stoppedDuration += new Date().getTime() - timeStopped.getTime();
+      }
+
+      started = setInterval(clockRunning, 10);
+      running = true;
+    }
+
+    function stop() {
+      running = false;
+      timeStopped = new Date();
+      clearInterval(started!);
+    }
+
+    function reset() {
+      running = false;
+      clearInterval(started!);
+      stoppedDuration = 0;
+      timeBegan = null;
+      timeStopped = null;
+      time.value = '00:00:00';
+    }
+
+    function clockRunning() {
+      const currentTime = new Date();
+      const timeElapsed = new Date(
+        currentTime.getTime() - timeBegan!.getTime() - stoppedDuration
+      );
+      const hour = timeElapsed.getUTCHours();
+      const min = timeElapsed.getUTCMinutes();
+      const sec = timeElapsed.getUTCSeconds();
+
+      time.value =
+        zeroPrefix(hour!, 2) +
+        ':' +
+        zeroPrefix(min!, 2) +
+        ':' +
+        zeroPrefix(sec!, 2);
+    }
+
+    function zeroPrefix(num: number | undefined, digit = 2) {
+      let zero = '';
+      for (let i = 0; i < digit; i++) {
+        zero += '0';
+      }
+      return (zero + num).slice(-digit);
+    }
+
+    return { time, start, stop, reset };
   },
 });

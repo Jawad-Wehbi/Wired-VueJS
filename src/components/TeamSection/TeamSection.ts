@@ -1,3 +1,4 @@
+import { get } from '@/service';
 import { defineComponent } from 'vue';
 import MembersBoard from '../MembersBoard/MembersBoard.vue';
 import MembersTasks from '../MembersTasks/MembersTasks.vue';
@@ -8,6 +9,15 @@ export default defineComponent({
       showMemberTasks: false,
       showTeamDetails: false,
     };
+  },
+  async mounted() {
+    try {
+      const response = await get('/team');
+      console.log('========>', response.data);
+      // this.result = response.data.data.items;
+    } catch (error) {
+      console.error(error);
+    }
   },
   methods: {
     togglelistItem() {
