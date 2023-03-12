@@ -31,10 +31,22 @@ interface Firstlog {
   id: number;
   start_date: string;
   end_date?: string;
-  difference?: any;
+  difference?: number;
 }
 
 interface Project {
+  id: number;
+  name: string;
+  deletable: boolean;
+}
+export interface projectInfo {
+  id: number;
+  name: string;
+  deletable: boolean;
+  task_categories: Taskcategory[];
+}
+
+interface Taskcategory {
   id: number;
   name: string;
   deletable: boolean;

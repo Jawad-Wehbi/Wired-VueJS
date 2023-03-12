@@ -20,7 +20,6 @@ export default defineComponent({
             },
           }
         );
-        console.log(response.data);
         // Save data to local storage
         localStorage.setItem('auth_token', response.data.data.auth_token);
         localStorage.setItem('email', response.data.data.email);
@@ -33,9 +32,6 @@ export default defineComponent({
         localStorage.setItem('team_admin', response.data.data.team_admin);
         localStorage.setItem('team_id', response.data.data.team_id);
         localStorage.setItem('user_status', response.data.data.user_status);
-
-        // Save auth token to cookies
-        // this.$cookies.set("Authorization", this.auth_token);
 
         // Navigate to home page
         this.$router.push('/');
