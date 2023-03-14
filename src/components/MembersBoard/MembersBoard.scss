@@ -10,12 +10,12 @@
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
     0 1px 5px 0 rgb(0 0 0 / 12%);
 }
-.members-container{
+.members-container {
   @include flex-box(column);
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
     0 1px 5px 0 rgb(0 0 0 / 12%);
 }
-.list-bottom{
+.list-bottom {
   background-color: $white;
   height: 52px;
   margin-top: 1px;
@@ -23,8 +23,41 @@
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
     0 1px 5px 0 rgb(0 0 0 / 12%);
 }
-.active-members{
+.active-members {
   width: 100%;
   @include flex-box(column);
   flex-shrink: 1;
+}
+.plans-overlay {
+  width: 70vw;
+  height: 85vh;
+  @include flex-box(column, space-between, center);
+  background-color: $white;
+  border-radius: 4px;
+}
+.plans-title {
+  @include flex-box(row, flex-start, center);
+}
+.plans-title-section {
+  font-size: 20px;
+  padding: 4px 16px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: $white;
+  height: 64px;
+  background-color: $primary-color;
+  top: 0px;
+  width: 100%;
+  @include flex-box(row, space-between, center);
+}
+.team-plans {
+  margin-left: 5px;
+}
+.tasks-list {
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+  background-color: #fff;
+  @include flex-box(row, center, center);
+  flex-wrap: wrap;
+  overflow-y: auto;
 }
