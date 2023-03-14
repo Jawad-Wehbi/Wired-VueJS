@@ -1,5 +1,5 @@
 <template>
-  <div class="team-details">
+  <div>
     <div class="member-details">
       <TimerComponent
         icon="mdi-laptop"
@@ -13,10 +13,12 @@
         Timer="00:00:00"
         :styles="{ color: '#683C42', backgroundColor: '#e16774cc' }"
       />
-      <TaskCard showName="true" />
-      <TaskCard showName="true" />
-      <TaskCard showName="true" />
-      <TaskCard showName="true" />
+      <TaskCard
+        showName="true"
+        v-for="item in MembersInfo.tasks"
+        :TaskDetails="item"
+        :key="item.id"
+      />
     </div>
   </div>
 </template>
