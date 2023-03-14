@@ -1,8 +1,11 @@
 <template>
   <div class="team-details">
-    <MemberDetails />
-    <MemberDetails />
-    <MemberDetails />
+    <MemberDetails
+      v-for="item in uniqueMemberTasks"
+      :MembersInfo="item"
+      :key="item.name"
+    />
+    <!-- {{ uniqueMemberTasks }} -->
   </div>
 </template>
 

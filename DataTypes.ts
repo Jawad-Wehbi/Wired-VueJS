@@ -97,3 +97,7 @@ interface Item {
   };
   user: User;
 }
+export interface filteredTask {
+  name: string;
+  tasks: TaskRecord[];
+}

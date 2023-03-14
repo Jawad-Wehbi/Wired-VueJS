@@ -7,12 +7,15 @@
         :MembersInfo="result"
       />
     </div>
-    <div class="team-tasks-container" v-if="showMemberTasks">
+    <div
+      class="team-tasks-container"
+      v-if="showMemberTasks"
+    >
       <MembersTasks :MemberTasks="memberData" />
     </div>
   </div>
-  <div class="team-details" v-if="showTeamDetails">
-    <TeamDetails />
+  <div v-if="showTeamDetails">
+    <TeamDetails :TeamDetails="todayData" />
   </div>
 </template>
 
