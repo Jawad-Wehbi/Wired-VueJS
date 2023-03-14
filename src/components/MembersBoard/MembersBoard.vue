@@ -5,10 +5,13 @@
       <div class="my-tasks">Active members</div>
     </div>
     <div class="members-container">
-      <ListItem @click="togglelistItem" />
-      <ListItem @click="togglelistItem" />
-      <ListItem @click="togglelistItem" />
-      <ListItem @click="togglelistItem" />
+      <ListItem
+        @click=""
+        @togglelistItem="passUserId"
+        v-for="item in activeMembers"
+        :MembersInfo="item"
+        :key="item.id"
+      />
     </div>
     <div class="list-bottom">
       <ListButtons listIcon="mdi-refresh" listButtonName="RELOAD" />

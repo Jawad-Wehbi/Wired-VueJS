@@ -1,18 +1,19 @@
-import TeamDetails from '../TeamDetails/TeamDetails';
-
 <template>
   <div class="team-section-container">
     <div class="team-board-container">
       <MembersBoard
-        @showMemberTasks="togglelistItem()"
+        @passUserId="setUserId"
         @showTeamDetails="toggleDetails()"
+        :MembersInfo="result"
       />
     </div>
     <div class="team-tasks-container" v-if="showMemberTasks">
-      <MembersTasks />
+      <MembersTasks :MemberTasks="memberData" />
     </div>
   </div>
-  <div class="team-details" v-if="showTeamDetails"><TeamDetails /></div>
+  <div class="team-details" v-if="showTeamDetails">
+    <TeamDetails />
+  </div>
 </template>
 
 <script lang="ts" src="./TeamSection.ts"></script>
