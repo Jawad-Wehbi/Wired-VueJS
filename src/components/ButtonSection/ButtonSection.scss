@@ -11,6 +11,10 @@
   background-color: $white;
   border-radius: 4px;
 }
+.left-side {
+  height: 56px;
+  @include flex-box(row, flex-start, center);
+}
 .overlay-title {
   font-size: 20px;
   padding: 4px 16px;
@@ -47,11 +51,19 @@
   padding: 0px 16px;
   @include flex-box(row, flex-start, center);
 }
-.create-shortcut{
+.create-shortcut {
   margin-left: 5px;
   font-size: 20px;
 }
-.create-shortcut-form{
-  @include flex-box(column,space-evenly,center );
+.create-shortcut-form {
+  @include flex-box(column, space-evenly, center);
   flex-flow: column;
+}
+.show-more-bottom {
+  position: fixed;
+  bottom: 0px;
+  border: 0;
+  height: 52px;
+  margin-top: 1px;
+  @include flex-box(row, space-around, center);
 }
