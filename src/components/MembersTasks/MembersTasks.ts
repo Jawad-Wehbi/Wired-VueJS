@@ -8,13 +8,13 @@ export default defineComponent({
     };
   },
   props: {
-    MemberTasks: {
+    MembersInfo: {
       type: Array as PropType<TaskRecord[]>,
       required: true,
     },
   },
   mounted() {
-    console.log(this.MemberTasks);
+    console.log(this.MembersInfo);
   },
   methods: {
     togglePlay() {
