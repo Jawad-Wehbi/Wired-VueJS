@@ -4,12 +4,12 @@
     <div class="my-tasks">My Tasks</div>
   </div>
   <div class="Container">
-    <div class="fixed-card"><NewTaskCard /></div>
+    <div class="fixed-card"><NewTaskCard :runningTaskId="taskId" /></div>
     <div class="relative-cards">
       <TaskCard
         showButton="true"
-        :TaskDetails="item"
         v-for="item in todayData"
+        :TaskDetails="item"
         :key="item.id"
         :runningTaskId="taskId"
       />
