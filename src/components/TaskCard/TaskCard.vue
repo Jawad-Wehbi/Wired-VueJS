@@ -48,7 +48,7 @@
         >
           <v-icon size="x-small" icon="mdi-reload"></v-icon>
         </button>
-        <button class="save round-button">
+        <button class="save round-button" @click="saveTask(TaskDetails.id)">
           <v-icon size="x-small" icon="mdi-content-save"></v-icon>
         </button>
         <button
@@ -65,6 +65,7 @@
         placeholder="Notes"
         bg-color="white"
         v-model="noteMessage"
+        @blur="saveTask(TaskDetails.id)"
       ></v-textarea>
     </div>
   </div>

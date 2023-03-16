@@ -21,11 +21,7 @@ export default defineComponent({
         const response = await post(`/tasks/${id}/start`);
         console.log('========>', response.data);
         this.result = response.data.data.items;
-        window.location.reload();
-        const mounted = () => {
-          this.start();
-        };
-        return mounted;
+        this.start();
       } catch (error) {
         console.error(error);
       }
@@ -36,7 +32,19 @@ export default defineComponent({
         console.log('========>', response.data);
         this.result = response.data.data.items;
         window.location.reload();
-        return this.reset();
+        this.reset();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async saveTask(id: number) {
+      try {
+        const response = await put(`/tasks/${id}`, {
+          notes: this.noteMessage,
+        });
+        console.log('========>', response.data);
+        this.result = response.data.data.items;
+        this.start();
       } catch (error) {
         console.error(error);
       }
@@ -76,7 +84,7 @@ export default defineComponent({
     },
     runningTaskId: {
       type: Number,
-      required: true,
+      required: false,
     },
   },
   computed: {
