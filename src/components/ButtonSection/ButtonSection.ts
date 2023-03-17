@@ -1,10 +1,10 @@
 import { get, post, put } from '@/service';
-import { projectInfo, TaskRecord } from 'DataTypes';
+import { projectInfo, Shortcuts, TaskRecord } from 'DataTypes';
 import { defineComponent } from 'vue';
 import MainButton from '../MainButton/MainButton.vue';
 import TaskCard from '../TaskCard/TaskCard.vue';
 import NewTaskCard from '../NewTaskCard/NewTaskCard.vue';
-import { isSameDay, isToday, parseISO } from 'date-fns';
+import { isToday, parseISO } from 'date-fns';
 export default defineComponent({
   data() {
     return {
@@ -20,12 +20,7 @@ export default defineComponent({
       offset: 0,
       limit: 12,
       allTasks: [] as TaskRecord[],
-      items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
-      ],
+      items: [] as Shortcuts[],
     };
   },
   computed: {
@@ -46,30 +41,34 @@ export default defineComponent({
     }
   },
   methods: {
-    async endAllTasks(id: number) {
+    async endAllTasks() {
       try {
         const getresponse = await get('/tasks');
         const data = getresponse.data.data.items;
-        console.log('data :>> ', getresponse);
         const filteredByToday: TaskRecord[] = data.filter(
           (item: TaskRecord) => {
             return isToday(parseISO(item.first_log.start_date));
           }
         );
-        console.log('filteredByToday :>> ', filteredByToday);
-        // const tasksIds = this.allTasks.map((data: TaskRecord) => data.id);
-        // console.log(tasksIds);
-        filteredByToday.forEach(async (kalb: TaskRecord) => {
+        filteredByToday.forEach(async (task: TaskRecord) => {
           try {
-            if (kalb.status !== 'finished') {
-              const response = await put(`/tasks/${kalb.id}/end`);
-              console.log('========>', response, kalb);
+            if (task.status !== 'finished') {
+              const response = await put(`/tasks/${task.id}/end`);
               this.result = response.data.data;
             }
           } catch (error) {
             console.error(error);
           }
         });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getCustomShortcuts() {
+      try {
+        const response = await get('/user_shortcuts');
+        this.items = response.data.data.items;
+        console.log('items are Hereeeeeeeee :>> ', this.items);
       } catch (error) {
         console.error(error);
       }
@@ -128,80 +127,3 @@ export default defineComponent({
   },
   components: { MainButton, TaskCard, NewTaskCard },
 });
-function data(
-  value: {
-    id: number;
-    due_date: string;
-    estimated_time_hours: number;
-    estimated_time_minutes: number;
-    total_spent_time: string;
-    notes: string;
-    status: string;
-    progress: number;
-    extra_data: string;
-    project: { id: number; name: string; deletable: boolean };
-    task_category: { id: number; name: string; deletable: boolean };
-    first_log: {
-      id: number;
-      start_date: string;
-      end_date?: string | undefined;
-      difference?: number | undefined;
-    };
-    last_log: {
-      id: number;
-      start_date: string;
-      end_date?: string | undefined;
-      difference?: number | undefined;
-    };
-    user: {
-      id: number;
-      email: string;
-      first_name: string;
-      last_name: string;
-      team_id: number;
-      team_admin: boolean;
-      user_status: string;
-      full_name: string;
-      initials: string;
-    };
-  },
-  index: number,
-  array: {
-    id: number;
-    due_date: string;
-    estimated_time_hours: number;
-    estimated_time_minutes: number;
-    total_spent_time: string;
-    notes: string;
-    status: string;
-    progress: number;
-    extra_data: string;
-    project: { id: number; name: string; deletable: boolean };
-    task_category: { id: number; name: string; deletable: boolean };
-    first_log: {
-      id: number;
-      start_date: string;
-      end_date?: string | undefined;
-      difference?: number | undefined;
-    };
-    last_log: {
-      id: number;
-      start_date: string;
-      end_date?: string | undefined;
-      difference?: number | undefined;
-    };
-    user: {
-      id: number;
-      email: string;
-      first_name: string;
-      last_name: string;
-      team_id: number;
-      team_admin: boolean;
-      user_status: string;
-      full_name: string;
-      initials: string;
-    };
-  }[]
-): unknown {
-  throw new Error('Function not implemented.');
-}

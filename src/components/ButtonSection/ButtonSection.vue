@@ -104,12 +104,17 @@
             buttonName="CUSTOM TASKS"
             :styles="{ color: 'white', backgroundColor: '#1976d2' }"
             v-bind="props"
+            @click="getCustomShortcuts"
           />
         </template>
 
         <v-list>
           <v-list-item v-for="(item, index) in items" :key="index">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title
+              >{{ item.data.project_name }}({{
+                item.data.category_name
+              }})</v-list-item-title
+            >
           </v-list-item>
         </v-list>
       </v-menu>

@@ -101,3 +101,14 @@ export interface filteredTask {
   name: string;
   tasks: TaskRecord[];
 }
+
+export interface Shortcuts {
+  id: number;
+  shortcut_type: string;
+  data: Data;
+}
+
+interface Data {
+  project_name: string;
+  category_name: string;
+}
