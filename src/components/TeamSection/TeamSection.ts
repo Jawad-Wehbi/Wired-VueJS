@@ -9,6 +9,7 @@ export default defineComponent({
   data() {
     return {
       userId: 0,
+      userName: '',
       showMemberTasks: false,
       showTeamDetails: false,
       result: [] as TaskRecord[],
@@ -45,8 +46,9 @@ export default defineComponent({
     },
   },
   methods: {
-    setUserId(id: number) {
+    setUserId(id: number, name: string) {
       this.userId = id;
+      this.userName = name;
       this.showMemberTasks = !this.showMemberTasks;
     },
     toggleDetails() {

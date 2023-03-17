@@ -7,7 +7,7 @@
         {{ MembersInfo.task_category.name }}
       </div>
     </div>
-    <div class="right-sec">00:00:00</div>
+    <div class="right-sec">08:31:15</div>
   </div>
 </template>
 

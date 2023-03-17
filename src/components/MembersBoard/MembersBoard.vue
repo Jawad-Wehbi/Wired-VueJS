@@ -7,7 +7,7 @@
     <div class="members-container">
       <ListItem
         @togglelistItem="passUserId"
-        v-for="item in activeMembers"
+        v-for="item in todayData"
         :MembersInfo="item"
         :key="item.id"
       />
@@ -37,6 +37,7 @@
           </div>
           <div class="tasks-list">
             <TaskCard
+              showName="true"
               v-for="item in plansData"
               :TaskDetails="item"
               :key="item.id"

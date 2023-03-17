@@ -3,7 +3,11 @@ import { defineComponent, PropType } from 'vue';
 export default defineComponent({
   methods: {
     togglelistItem() {
-      this.$emit('togglelistItem', this.MembersInfo.user.id);
+      this.$emit(
+        'togglelistItem',
+        this.MembersInfo.user.id,
+        this.MembersInfo.user.first_name
+      );
     },
   },
   props: {

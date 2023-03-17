@@ -8,7 +8,7 @@
       />
     </div>
     <div class="team-tasks-container" v-if="showMemberTasks">
-      <MembersTasks :MemberTasks="memberData" />
+      <MembersTasks :MemberTasks="memberData" :memberName="userName" />
     </div>
   </div>
   <div v-if="showTeamDetails">

@@ -15,8 +15,8 @@ export default defineComponent({
     };
   },
   methods: {
-    passUserId(id: number) {
-      this.$emit('passUserId', id);
+    passUserId(id: number, name: string) {
+      this.$emit('passUserId', id, name);
     },
     toggleDetails() {
       this.$emit('showTeamDetails');
@@ -40,19 +40,20 @@ export default defineComponent({
     setTimeout(() => {
       this.reduce();
       console.log(this.plansArray);
-    }, 3000);
+    }, 7000);
   },
   computed: {
     todayData(): TaskRecord[] {
       const today = new Date();
       console.log(today);
-      return this.MembersInfo.filter((items) => {
-        const itemDate = parseISO(items.first_log.start_date);
-        return isSameDay(today, itemDate);
-      });
-      // .filter((items) => {
-      //       return items.status === 'started' || items.status === 'paused';
-      //     });
+      return this.activeMembers
+        .filter((items) => {
+          const itemDate = parseISO(items.first_log.start_date);
+          return isSameDay(today, itemDate);
+        })
+        .filter((items) => {
+          return items.status !== 'finished';
+        });
     },
     plansData(): TaskRecord[] {
       console.log('CHECK ACTIVEMEMBERS', this.MembersInfo);
