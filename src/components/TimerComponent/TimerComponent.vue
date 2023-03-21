@@ -4,7 +4,7 @@
       <v-icon v-if="icon" size="small">{{ icon }}</v-icon>
     </div>
     <div>{{ TimerTitle }}</div>
-    <div>{{ Timer }}</div>
+    <div></div>
   </div>
 </template>
 
