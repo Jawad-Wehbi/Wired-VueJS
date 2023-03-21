@@ -28,8 +28,8 @@
               <div class="first input">
                 <div>
                   <v-text-field
-                    model-value="John"
-                    label="Fist Name"
+                    model-value="{first_name}"
+                    label="First Name"
                     variant="outlined"
                     readonly
                     class="text-field"
@@ -42,7 +42,7 @@
               <div class="second input">
                 <div>
                   <v-text-field
-                    model-value="Doe"
+                    model-value="{last_name}"
                     label="Last Name"
                     variant="outlined"
                     readonly
@@ -65,7 +65,7 @@
           </div>
         </v-dialog>
       </button>
-      <div class="white profile-name">Jawad Wehbi</div>
+      <div class="white profile-name">{{ full_name }}</div>
       <div class="white">
         <button class="sign-out">
           <v-icon class="sign-out-icon" icon="mdi-logout"></v-icon>
