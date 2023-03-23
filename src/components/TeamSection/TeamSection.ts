@@ -20,12 +20,9 @@ export default defineComponent({
   async mounted() {
     this.memberData;
     this.totalMemberWorkTimeAddition();
-    this.memberDataSorting();
     try {
-      const response = await get('/team/tasks', { limit: 100 });
-      console.log('Team Information ========>', response.data.data.items);
-      this.result = response.data.data.items;
-      console.log('Team result ========>', this.result);
+      const teamTasks = await get('/team/tasks', { limit: 100 });
+      this.result = teamTasks.data.data.items;
     } catch (error) {
       console.error(error);
     }
@@ -33,7 +30,6 @@ export default defineComponent({
   computed: {
     todayData(): TaskRecord[] {
       const today = new Date();
-      console.log('Today is:', today);
       return this.result.filter((items) => {
         const itemDate = parseISO(items.first_log.start_date);
         return isSameDay(today, itemDate);
@@ -41,18 +37,13 @@ export default defineComponent({
     },
     memberData(): TaskRecord[] {
       return this.todayData.filter((todayMemberTasks) => {
-        console.log('Here are all the users', todayMemberTasks);
         if (this.userId == todayMemberTasks.user.id) {
-          console.log('Here is the User you want', todayMemberTasks);
           return todayMemberTasks;
         }
       });
     },
   },
   methods: {
-    memberDataSorting() {
-      this.memberData.map((item) => console.log('item :>> ', item));
-    },
     //
 
     //
@@ -62,24 +53,16 @@ export default defineComponent({
     //
     timeOfEachMember(): TaskRecord[] {
       return this.todayData.filter((item) => {
-        console.log('Here are all the users', item);
         if (this.userId == item.user.id) {
-          console.log('Here is the User you want', item);
           return item;
         }
       });
     },
     totalMemberWorkTimeAddition() {
       if (this.memberData !== undefined) {
-        console.log('this.memberData :>> ', this.memberData);
         this.memberData.map((item) => {
-          console.log('item.total_spent_time :>> ', item.total_spent_time);
           return (this.totalSpentTime += +item.total_spent_time);
         });
-        console.log(
-          'totalSpentTime from TeamSection is:>> ',
-          this.totalSpentTime
-        );
       }
     },
     setUserId(id: number, name: string) {

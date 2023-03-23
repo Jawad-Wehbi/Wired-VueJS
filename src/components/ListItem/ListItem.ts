@@ -47,7 +47,4 @@ export default defineComponent({
       required: true,
     },
   },
-  mounted() {
-    console.log('MembersInfo form ListItem', this.MembersInfo);
-  },
 });

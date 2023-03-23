@@ -49,7 +49,6 @@ export default defineComponent({
           offset: 0,
         });
         this.result = response.data.data;
-        console.log('object');
       } catch (error) {
         console.error(error);
       }
@@ -60,7 +59,6 @@ export default defineComponent({
     getProjectInfo(): void {
       const newArray = getProjectInfo(this.result, this.selectedProject);
       this.projectCategoriesArray = newArray[0];
-      console.log('SELECTED PROJECT OBJ', this.projectCategoriesArray);
       this.getProjectCategories(this.projectCategoriesArray);
     },
     getProjectCategories(obj: projectInfo): string[] {

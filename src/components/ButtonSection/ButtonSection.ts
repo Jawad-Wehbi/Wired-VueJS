@@ -67,24 +67,21 @@ export default defineComponent({
     },
     async getCustomShortcuts() {
       try {
-        const response = await get('/user_shortcuts');
-        this.items = response.data.data.items;
-        console.log('items are Hereeeeeeeee :>> ', this.items);
+        const customShortcuts = await get('/user_shortcuts');
+        this.items = customShortcuts.data.data.items;
       } catch (error) {
         console.error(error);
       }
     },
     async getAllTasks() {
       try {
-        const response = await get('/tasks', {
+        const allTasks = await get('/tasks', {
           offset: this.offset,
           limit: this.limit,
         });
-        console.log('========>', response.data);
-        const data = response.data.data.items;
+        const data = allTasks.data.data.items;
         this.offset = this.offset + this.limit;
         this.allTasks.push(...data);
-        console.log(this.allTasks);
         return (this.allTasksDialog = true);
       } catch (error) {
         console.error(error);
@@ -92,15 +89,14 @@ export default defineComponent({
     },
     async createNewShortcut() {
       try {
-        const response = await post('/user_shortcuts', {
+        const newShortcut = await post('/user_shortcuts', {
           data: {
             project_name: this.selectedProject,
             category_name: this.selectedCategory,
           },
           shortcut_type: 'task_start',
         });
-        this.result = response.data.data;
-        console.log('object');
+        this.result = newShortcut.data.data;
       } catch (error) {
         console.error(error);
       }
@@ -111,11 +107,10 @@ export default defineComponent({
     getProjectInfo(): void {
       const newArray = getProjectInfo(this.result, this.selectedProject);
       this.projectCategoriesArray = newArray[0];
-      console.log('SELECTED PROJECT OBJ', this.projectCategoriesArray);
       this.getProjectCategories(this.projectCategoriesArray);
     },
-    getProjectCategories(projectInfo: projectInfo): string[] {
-      return (this.categories = projectInfo.task_categories.map(
+    getProjectCategories(projectName: projectInfo): string[] {
+      return (this.categories = projectName.task_categories.map(
         (obj) => obj.name
       ));
     },

@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseURL = 'https://api.wired.sowlutions.com/api/v2';
 
 const axiosInstance = axios.create({
-  baseURL: baseURL,
+  baseURL,
 });
 
 // Add authorization token to headers
@@ -12,7 +12,7 @@ const token = localStorage.getItem('auth_token');
 export async function get(urlPath: string, params = {}) {
   try {
     const response = await axiosInstance.get(`${urlPath}`, {
-      params: params,
+      params,
       headers: {
         Authorization: `${token}`,
       },
@@ -52,7 +52,7 @@ export async function put(urlPath: string, body: object = {}) {
 export async function deleteData(urlPath: string, params = {}) {
   try {
     const response = await axiosInstance.delete(`${urlPath}`, {
-      params: params,
+      params,
       headers: {
         Authorization: `${token}`,
       },

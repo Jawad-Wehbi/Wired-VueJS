@@ -19,7 +19,6 @@ export default defineComponent({
   computed: {
     todayData(): TaskRecord[] {
       const today = new Date();
-      console.log(today);
       return this.result.filter((items) => {
         const itemDate = parseISO(items.first_log.start_date);
         return isSameDay(today, itemDate);
@@ -29,16 +28,14 @@ export default defineComponent({
   methods: {
     async getAllTasks() {
       try {
-        const response = await get('/tasks');
-        console.log('========>', response.data);
-        this.result = response.data.data.items;
+        const allTasks = await get('/tasks');
+        this.result = allTasks.data.data.items;
         this.runningTaskId();
       } catch (error) {
         console.error(error);
       }
     },
     reloadAllTasks() {
-      console.log('Test :>> ');
       this.$emit('reloadTasks');
       this.getAllTasks();
     },

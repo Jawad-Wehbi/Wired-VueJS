@@ -17,16 +17,12 @@ export default defineComponent({
   },
   methods: {
     reloadAllTasks() {
-      console.log('reloadAllTasks :>> ', this.getAllTasks());
-      console.log('Test :>> ');
       this.getAllTasks();
     },
     async getAllTasks() {
       try {
-        const response = await get('/tasks');
-        console.log('========>', response.data);
-        this.result = response.data.data.items;
-        console.log('Result :>> ', this.result);
+        const allTasks = await get('/tasks');
+        this.result = allTasks.data.data.items;
       } catch (error) {
         console.error(error);
       }
@@ -34,7 +30,6 @@ export default defineComponent({
   },
   watch: {
     reloadResultChanges() {
-      console.log('Result Changed :>> ', this.result);
       this.result;
     },
   },

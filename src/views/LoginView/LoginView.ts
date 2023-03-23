@@ -14,14 +14,10 @@ export default defineComponent({
   methods: {
     async login() {
       try {
-        const response = await axios.post(
-          'https://api.wired.sowlutions.com/api/v2/signin',
-          {
-            email: this.email,
-            domain: this.domain,
-          }
-        );
-        console.log(response.data);
+        await axios.post('https://api.wired.sowlutions.com/api/v2/signin', {
+          email: this.email,
+          domain: this.domain,
+        });
         // Route to the next page if login is successful
         this.$router.push('/verify-login');
       } catch (error) {

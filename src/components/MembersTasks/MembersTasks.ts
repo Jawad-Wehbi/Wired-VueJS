@@ -17,10 +17,6 @@ export default defineComponent({
       default: 'Jawad',
     },
   },
-  mounted() {
-    console.log('Here Are the Member Info', this.MemberTasks);
-    console.log(this.memberName);
-  },
   methods: {
     togglePlay() {
       if (this.display === 'none') {

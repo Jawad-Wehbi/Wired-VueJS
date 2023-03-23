@@ -15,7 +15,6 @@ export default defineComponent({
     try {
       const response = await get('/users/info');
       this.full_name = response.data.data.full_name;
-      console.log('========>', this.full_name);
     } catch (error) {
       console.error(error);
     }
@@ -28,7 +27,6 @@ export default defineComponent({
           last_name: this.last_name,
         });
         this.full_name = response.data.data.full_name;
-        console.log('========>', this.full_name);
       } catch (error) {
         console.error(error);
       }

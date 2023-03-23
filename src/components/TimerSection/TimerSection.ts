@@ -10,8 +10,6 @@ export default defineComponent({
     };
   },
   mounted() {
-    console.log('Tasks Array is :>> ', this.tasksArray);
-    console.log('Tasks are :>> ', this.tasks);
     if (this.todayData !== null) {
       this.showTotalBreakTimer = true;
     }
@@ -40,10 +38,6 @@ export default defineComponent({
     },
     CurrentBreakTime(): string {
       if (this.tasksArray.find((task) => task.status === 'started')) {
-        console.log(
-          'task.status :>> ',
-          this.tasksArray.find((task) => task.status === 'started')
-        );
         return 'display-none';
       }
       return '';

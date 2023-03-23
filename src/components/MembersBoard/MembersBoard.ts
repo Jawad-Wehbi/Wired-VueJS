@@ -23,7 +23,6 @@ export default defineComponent({
       this.$emit('showTeamDetails');
     },
     reduce() {
-      console.log('MembersInfo :>> ', this.MembersInfo);
       this.activeMembers = this.MembersInfo.reduce(
         (accumulator: TaskRecord[], currentTask: TaskRecord) => {
           const userExists = accumulator.some(
@@ -63,7 +62,6 @@ export default defineComponent({
   computed: {
     todayData(): TaskRecord[] {
       const today = new Date();
-      console.log(today);
       return this.activeMembers
         .filter((items) => {
           const itemDate = parseISO(items.first_log.start_date);
@@ -74,7 +72,6 @@ export default defineComponent({
         });
     },
     plansData(): TaskRecord[] {
-      console.log('CHECK ACTIVEMEMBERS', this.MembersInfo);
       const planningArray = [] as TaskRecord[];
       const today = new Date();
       return this.MembersInfo.filter((items) => {
@@ -88,7 +85,6 @@ export default defineComponent({
           planningArray.push(teamPlans);
           return planningArray;
         }
-        console.log('Team planningArray', planningArray);
         this.plansArray = planningArray;
       });
     },
@@ -103,7 +99,6 @@ export default defineComponent({
   mounted() {
     setTimeout(() => {
       this.reduce();
-      console.log(this.plansArray);
     }, 10000);
   },
 });

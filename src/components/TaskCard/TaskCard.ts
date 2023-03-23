@@ -62,15 +62,13 @@ export default defineComponent({
     //
     async playTask(id: number) {
       this.$emit('reloadAllTasks');
-      console.log('Test :>> ');
       try {
         if (this.runningTaskId != 0) {
           const pauseresponse = await post(`/tasks/${this.runningTaskId}/stop`);
           this.result = pauseresponse.data.data.items;
         }
-        const response = await post(`/tasks/${id}/start`);
-        console.log('========>', response.data);
-        this.result = response.data.data.items;
+        const playTask = await post(`/tasks/${id}/start`);
+        this.result = playTask.data.data.items;
       } catch (error) {
         console.error(error);
       }
@@ -78,29 +76,26 @@ export default defineComponent({
     async pauseTask(id: number) {
       this.$emit('reloadAllTasks');
       try {
-        const response = await post(`/tasks/${id}/stop`);
-        console.log('========>', response.data);
-        this.result = response.data.data.items;
+        const pauseTask = await post(`/tasks/${id}/stop`);
+        this.result = pauseTask.data.data.items;
       } catch (error) {
         console.error(error);
       }
     },
     async saveTask(id: number) {
       try {
-        const response = await put(`/tasks/${id}`, {
+        const saveTask = await put(`/tasks/${id}`, {
           notes: this.noteMessage,
         });
-        console.log('========>', response.data);
-        this.result = response.data.data.items;
+        this.result = saveTask.data.data.items;
       } catch (error) {
         console.error(error);
       }
     },
     async unendTask(id: number) {
       try {
-        const response = await put(`/tasks/${id}/unend`);
-        console.log('========>', response.data);
-        this.result = response.data.data.items;
+        const unendTask = await put(`/tasks/${id}/unend`);
+        this.result = unendTask.data.data.items;
         window.location.reload();
       } catch (error) {
         console.error(error);
@@ -108,8 +103,7 @@ export default defineComponent({
     },
     async deleteTask(id: number) {
       try {
-        const response = await deleteData(`/tasks/${id}`);
-        console.log('========>', response.data);
+        await deleteData(`/tasks/${id}`);
         window.location.reload();
       } catch (error) {
         console.error(error);
@@ -117,33 +111,20 @@ export default defineComponent({
     },
   },
   computed: {
-    //
-
-    //
     // Task Current Timer Functions
-    //
 
-    //
     computedTaskCurrentTime() {
       return this.taskCurrentTimer();
     },
-    //
 
-    //
     // Total Task Time functions
-    //
 
-    //
     computedTaskTotalTime() {
       return this.taskTotalTimeIncrementter();
     },
-    //
 
-    //
     // Buttons Functions
-    //
 
-    //
     pauseButton(): string {
       if (
         this.TaskDetails.status == 'paused' ||

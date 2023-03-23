@@ -112,8 +112,6 @@ export default defineComponent({
           const date = parseISO(startedTime);
 
           formattedDate = format(date, 'yyyy-MM-dd HH:mm:ss');
-          console.log('formattedDate :>> ', formattedDate);
-          console.log('Type of formattedDate :>> ', typeof formattedDate);
         }
         return formattedDate;
       }
@@ -124,9 +122,7 @@ export default defineComponent({
       if (start_date_s) {
         const start_date_d = new Date(start_date_s);
         const totalTime = differenceInSeconds(currentTime, start_date_d);
-        console.log('totalTime :>> ', totalTime);
         this.totalBreakTime = Math.abs(totalTime - this.totalSpentTime);
-        console.log('totalBreakTime :>> ', this.totalBreakTime);
       }
     },
     totalBreaktimeIncrementter() {
@@ -158,7 +154,6 @@ export default defineComponent({
           console.log('item.total_spent_time :>> ', item.total_spent_time);
           return (this.totalSpentTime += +item.total_spent_time);
         });
-        console.log('totalSpentTime is:>> ', this.totalSpentTime);
       }
     },
     worktimeIncrementter() {
