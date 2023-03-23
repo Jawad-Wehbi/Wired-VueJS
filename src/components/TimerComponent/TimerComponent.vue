@@ -4,7 +4,15 @@
       <v-icon v-if="icon" size="small">{{ icon }}</v-icon>
     </div>
     <div>{{ TimerTitle }}</div>
-    <div></div>
+    <div v-if="TimerTitle === 'Total Work Time'">
+      {{ computedTotalWorkTime }}
+    </div>
+    <div v-if="TimerTitle === 'Total Break Time'">
+      {{ computedTotalBreakTime }}
+    </div>
+    <div v-if="TimerTitle === 'Current Break Time'">
+      {{ computedCurrentBreakTime }}
+    </div>
   </div>
 </template>
 

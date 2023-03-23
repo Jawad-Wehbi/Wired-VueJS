@@ -2,18 +2,19 @@ import { TaskRecord } from 'DataTypes';
 import { parseISO, isSameDay, differenceInSeconds, format } from 'date-fns';
 import { defineComponent, PropType } from 'vue';
 import { addSecondsToTime } from '../../helpers/timeFormatter';
+
 interface StyleProps {
   color: string;
   backgroundColor: string;
   fontSize: string;
 }
+
 export default defineComponent({
   data() {
     return {
-      tasksArray: [] as TaskRecord[],
+      tasksArray: this.tasks,
       totalBreakTime: 0,
       totalSpentTime: 0,
-      Time: '',
       currentBreak: 0,
     };
   },
@@ -34,12 +35,10 @@ export default defineComponent({
       type: String as PropType<string>,
       required: true,
     },
-  },
-  setup(props) {
-    return {
-      icon: props.icon,
-      TimerTitle: props.TimerTitle,
-    };
+    tasks: {
+      type: [] as PropType<TaskRecord[]>,
+      required: true,
+    },
   },
   computed: {
     computedStyles(): Record<string, string> {
@@ -49,13 +48,44 @@ export default defineComponent({
       };
       return styles;
     },
-    todayData(): TaskRecord[] {
-      const today = new Date();
-      return this.tasksArray.filter((items) => {
-        console.log('Tasks Array :>> ', this.tasksArray);
-        const itemDate = parseISO(items.first_log.start_date);
-        return isSameDay(today, itemDate);
-      });
+    todayData() {
+      if (this.tasksArray !== undefined) {
+        const today = new Date();
+        return this.tasksArray.filter((items) => {
+          const itemDate = parseISO(items.first_log.start_date);
+          return isSameDay(today, itemDate);
+        });
+      }
+    },
+    //
+
+    //
+    // Total Work Time Computed Properties
+    //
+
+    //
+    computedTotalWorkTime() {
+      return this.worktimeIncrementter();
+    },
+    //
+
+    //
+    // Total Break Time Computed Properties
+    //
+
+    //
+    computedTotalBreakTime() {
+      return this.totalBreaktimeIncrementter();
+    },
+    //
+
+    //
+    // Current Break Time Computed Properties
+    //
+
+    //
+    computedCurrentBreakTime() {
+      return this.currrentBreaktimeIncrementter();
     },
   },
   methods: {
@@ -67,22 +97,26 @@ export default defineComponent({
 
     //
     findFirstTask() {
-      return Math.min(...this.todayData.map((item: TaskRecord) => item.id));
+      if (this.todayData !== undefined) {
+        return Math.min(...this.todayData.map((item: TaskRecord) => item.id));
+      }
     },
     getStartDate() {
-      const task = this.todayData.find(
-        (task) => task.id === this.findFirstTask()
-      );
-      const startedTime = task?.first_log.start_date;
-      let formattedDate;
-      if (startedTime) {
-        const date = parseISO(startedTime);
+      if (this.todayData !== undefined) {
+        const task = this.todayData.find(
+          (task) => task.id === this.findFirstTask()
+        );
+        const startedTime = task?.first_log.start_date;
+        let formattedDate;
+        if (startedTime) {
+          const date = parseISO(startedTime);
 
-        formattedDate = format(date, 'yyyy-MM-dd HH:mm:ss');
-        console.log('formattedDate :>> ', formattedDate);
-        console.log('Type of formattedDate :>> ', typeof formattedDate);
+          formattedDate = format(date, 'yyyy-MM-dd HH:mm:ss');
+          console.log('formattedDate :>> ', formattedDate);
+          console.log('Type of formattedDate :>> ', typeof formattedDate);
+        }
+        return formattedDate;
       }
-      return formattedDate;
     },
     breakTimeCalculations() {
       const currentTime = new Date();
@@ -96,22 +130,8 @@ export default defineComponent({
       }
     },
     totalBreaktimeIncrementter() {
-      this.totalBreakTime = this.totalBreakTime + 1;
-      const formattedTotalBreakTime = addSecondsToTime(
-        '00:00:00',
-        this.totalBreakTime
-      );
-      // console.log('formattedTotalBreakTime :>> ', formattedTotalBreakTime);
-      return formattedTotalBreakTime;
-    },
-    totalBreakTimer() {
-      setInterval(() => {
-        console.log(
-          'totalBreaktimeIncrementter',
-          this.totalBreaktimeIncrementter()
-        );
-        // this.totalBreaktimeIncrementter();
-      }, 1000);
+      this.totalBreakTime = this.totalBreakTime + 0.5;
+      return addSecondsToTime('00:00:00', Math.round(this.totalBreakTime));
     },
     //
 
@@ -121,22 +141,8 @@ export default defineComponent({
 
     //
     currrentBreaktimeIncrementter() {
-      this.currentBreak = this.currentBreak + 1;
-      const formattedBreakTime = addSecondsToTime(
-        '00:00:00',
-        this.currentBreak
-      );
-      // console.log('formattedBreakTime :>> ', formattedBreakTime);
-      return formattedBreakTime;
-    },
-    currentBreakTimer() {
-      setInterval(() => {
-        console.log(
-          'currrentBreaktimeIncrementter',
-          this.currrentBreaktimeIncrementter()
-        );
-        // this.currrentBreaktimeIncrementter();
-      }, 1000);
+      this.currentBreak = this.currentBreak + 0.5;
+      return addSecondsToTime('00:00:00', Math.round(this.currentBreak));
     },
     //
 
@@ -146,34 +152,37 @@ export default defineComponent({
 
     //
     totalWorkTimeAddition() {
-      this.todayData.map((item) => {
-        return (this.totalSpentTime += +item.total_spent_time);
-      });
-      console.log('totalSpentTime is:>> ', this.totalSpentTime);
+      if (this.todayData !== undefined) {
+        console.log('this.todayData :>> ', this.todayData);
+        this.todayData.map((item) => {
+          console.log('item.total_spent_time :>> ', item.total_spent_time);
+          return (this.totalSpentTime += +item.total_spent_time);
+        });
+        console.log('totalSpentTime is:>> ', this.totalSpentTime);
+      }
     },
     worktimeIncrementter() {
-      const IncrementedTime = (this.totalSpentTime = this.totalSpentTime + 1);
-      // console.log('Incremented Time is :>> ', IncrementedTime);
-      const formattedWorkTime = addSecondsToTime(
-        '00:00:00',
-        Math.round(IncrementedTime)
-      );
-      return formattedWorkTime;
-    },
-    startWorkTimer() {
-      setInterval(() => {
-        // console.log(this.worktimeIncrementter());
-        this.worktimeIncrementter();
-      }, 1000);
+      this.totalSpentTime += 0.5;
+      return addSecondsToTime('00:00:00', Math.round(this.totalSpentTime));
     },
   },
   mounted() {
-    // this.totalWorkTimeAddition();
-    // this.startWorkTimer();
-    // this.currrentBreaktimeIncrementter();
-    // this.currentBreakTimer();
-    // this.totalBreaktimeIncrementter();
-    // this.totalBreakTimer();
+    if (this.todayData !== undefined) {
+      if (this.todayData.find((task) => task.status === 'started')) {
+        setInterval(() => {
+          this.worktimeIncrementter();
+        }, 1000);
+      } else {
+        setInterval(() => {
+          this.totalBreaktimeIncrementter();
+        }, 1000);
+        setInterval(() => {
+          this.currrentBreaktimeIncrementter();
+        }, 1000);
+      }
+    }
+
+    this.totalWorkTimeAddition();
     this.getStartDate();
     this.breakTimeCalculations();
   },
