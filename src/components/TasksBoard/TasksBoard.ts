@@ -10,19 +10,12 @@ export default defineComponent({
     return {
       result: [] as TaskRecord[],
       taskId: 0,
+      totalSpentTime: 0,
     };
   },
-  async mounted() {
-    try {
-      const response = await get('/tasks');
-      console.log('========>', response.data);
-      this.result = response.data.data.items;
-      this.runningTaskId();
-    } catch (error) {
-      console.error(error);
-    }
+  mounted() {
+    this.getAllTasks();
   },
-  components: { NewTaskCard, TaskCard },
   computed: {
     todayData(): TaskRecord[] {
       const today = new Date();
@@ -34,6 +27,21 @@ export default defineComponent({
     },
   },
   methods: {
+    async getAllTasks() {
+      try {
+        const response = await get('/tasks');
+        console.log('========>', response.data);
+        this.result = response.data.data.items;
+        this.runningTaskId();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    reloadAllTasks() {
+      console.log('Test :>> ');
+      this.$emit('reloadTasks');
+      this.getAllTasks();
+    },
     runningTaskId(): void {
       this.result.filter((task) => {
         if (task.status == 'started') {
@@ -42,4 +50,5 @@ export default defineComponent({
       });
     },
   },
+  components: { NewTaskCard, TaskCard },
 });

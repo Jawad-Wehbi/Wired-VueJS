@@ -7,11 +7,12 @@
     <div class="fixed-card"><NewTaskCard :runningTaskId="taskId" /></div>
     <div class="relative-cards">
       <TaskCard
-        showButton="true"
+        :showButton="true"
         v-for="item in todayData"
         :TaskDetails="item"
         :key="item.id"
         :runningTaskId="taskId"
+        @reloadAllTasks="reloadAllTasks()"
       />
     </div>
   </div>

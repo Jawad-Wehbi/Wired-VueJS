@@ -19,7 +19,7 @@
 }
 .relative-cards {
   @include flex-box(row, space-between, center);
-  overflow: scroll;
+  overflow: auto;
   overflow-y: hidden;
 }
 .my-tasks{

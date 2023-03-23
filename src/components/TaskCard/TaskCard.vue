@@ -21,8 +21,10 @@
       </div>
       <div class="upper-right">
         <div class="day">Today</div>
-        <div class="task-current-timing">Current: {{ time }}</div>
-        <div class="task-total-timing">Total: 00:15:00</div>
+        <div class="task-current-timing" :class="showTaskCurrentTimer">
+          Current: {{ computedTaskCurrentTime }}
+        </div>
+        <div class="task-total-timing">Total: {{ computedTaskTotalTime }}</div>
       </div>
     </div>
     <div class="mid-card" v-if="showButton">
