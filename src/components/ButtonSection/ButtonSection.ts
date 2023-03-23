@@ -5,6 +5,7 @@ import MainButton from '../MainButton/MainButton.vue';
 import TaskCard from '../TaskCard/TaskCard.vue';
 import NewTaskCard from '../NewTaskCard/NewTaskCard.vue';
 import { isToday, parseISO } from 'date-fns';
+import { getProjectInfo } from '@/helpers/utils';
 export default defineComponent({
   data() {
     return {
@@ -108,16 +109,15 @@ export default defineComponent({
       return (this.projects = arr.map((obj) => obj.name));
     },
     getProjectInfo(): void {
-      let newArray: projectInfo[] = [];
-      newArray = this.result.filter((obj) => {
-        return obj.name === this.selectedProject;
-      });
+      const newArray = getProjectInfo(this.result, this.selectedProject);
       this.projectCategoriesArray = newArray[0];
       console.log('SELECTED PROJECT OBJ', this.projectCategoriesArray);
       this.getProjectCategories(this.projectCategoriesArray);
     },
-    getProjectCategories(obj: projectInfo): string[] {
-      return (this.categories = obj.task_categories.map((obj) => obj.name));
+    getProjectCategories(projectInfo: projectInfo): string[] {
+      return (this.categories = projectInfo.task_categories.map(
+        (obj) => obj.name
+      ));
     },
   },
   watch: {

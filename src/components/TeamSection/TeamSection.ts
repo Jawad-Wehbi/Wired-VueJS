@@ -13,15 +13,19 @@ export default defineComponent({
       showMemberTasks: false,
       showTeamDetails: false,
       result: [] as TaskRecord[],
-      todayMemberTasks: [] as TaskRecord[],
       MemberTasks: [] as TaskRecord[],
+      totalSpentTime: 0,
     };
   },
   async mounted() {
+    this.memberData;
+    this.totalMemberWorkTimeAddition();
+    this.memberDataSorting();
     try {
       const response = await get('/team/tasks', { limit: 100 });
       console.log('Team Information ========>', response.data.data.items);
       this.result = response.data.data.items;
+      console.log('Team result ========>', this.result);
     } catch (error) {
       console.error(error);
     }
@@ -46,6 +50,38 @@ export default defineComponent({
     },
   },
   methods: {
+    memberDataSorting() {
+      this.memberData.map((item) => console.log('item :>> ', item));
+    },
+    //
+
+    //
+    // Total Work Time functions
+    //
+
+    //
+    timeOfEachMember(): TaskRecord[] {
+      return this.todayData.filter((item) => {
+        console.log('Here are all the users', item);
+        if (this.userId == item.user.id) {
+          console.log('Here is the User you want', item);
+          return item;
+        }
+      });
+    },
+    totalMemberWorkTimeAddition() {
+      if (this.memberData !== undefined) {
+        console.log('this.memberData :>> ', this.memberData);
+        this.memberData.map((item) => {
+          console.log('item.total_spent_time :>> ', item.total_spent_time);
+          return (this.totalSpentTime += +item.total_spent_time);
+        });
+        console.log(
+          'totalSpentTime from TeamSection is:>> ',
+          this.totalSpentTime
+        );
+      }
+    },
     setUserId(id: number, name: string) {
       this.userId = id;
       this.userName = name;

@@ -1,6 +1,7 @@
 import { get, post } from '@/service';
 import { projectInfo } from 'DataTypes';
 import { defineComponent } from 'vue';
+import { getProjectInfo } from '../../helpers/utils';
 export default defineComponent({
   data() {
     return {
@@ -57,10 +58,7 @@ export default defineComponent({
       return (this.projects = arr.map((obj) => obj.name));
     },
     getProjectInfo(): void {
-      let newArray: projectInfo[] = [];
-      newArray = this.result.filter((obj) => {
-        return obj.name === this.selectedProject;
-      });
+      const newArray = getProjectInfo(this.result, this.selectedProject);
       this.projectCategoriesArray = newArray[0];
       console.log('SELECTED PROJECT OBJ', this.projectCategoriesArray);
       this.getProjectCategories(this.projectCategoriesArray);

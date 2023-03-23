@@ -12,6 +12,7 @@ export default defineComponent({
       activeMembers: [] as TaskRecord[],
       teamPlans: [] as TaskRecord[],
       plansArray: [] as TaskRecord[],
+      totalSpentTime: 0,
     };
   },
   methods: {
@@ -22,6 +23,7 @@ export default defineComponent({
       this.$emit('showTeamDetails');
     },
     reduce() {
+      console.log('MembersInfo :>> ', this.MembersInfo);
       this.activeMembers = this.MembersInfo.reduce(
         (accumulator: TaskRecord[], currentTask: TaskRecord) => {
           const userExists = accumulator.some(
@@ -35,13 +37,29 @@ export default defineComponent({
         []
       );
     },
+
+    //
+
+    //
+    // Total Work Time functions
+    //
+
+    //
+
+    // totalMemberWorkTimeAddition() {
+    //   if (this.activeMembers !== undefined) {
+    //     console.log('this.activeMembers :>> ', this.activeMembers);
+    //     this.activeMembers.map((item) => {
+    //       if (item.user.full_name === 'Jawad Wehbi') {
+    //         console.log('item.total_spent_time :>> ', item.total_spent_time);
+    //         return (this.totalSpentTime += +item.total_spent_time);
+    //       }
+    //     });
+    //     console.log('totalSpentTime is:>> ', this.totalSpentTime);
+    //   }
+    // },
   },
-  mounted() {
-    setTimeout(() => {
-      this.reduce();
-      console.log(this.plansArray);
-    }, 7000);
-  },
+
   computed: {
     todayData(): TaskRecord[] {
       const today = new Date();
@@ -82,4 +100,10 @@ export default defineComponent({
     },
   },
   components: { ListItem, ListButtons, ButtonSection, TaskCard },
+  mounted() {
+    setTimeout(() => {
+      this.reduce();
+      console.log(this.plansArray);
+    }, 10000);
+  },
 });
