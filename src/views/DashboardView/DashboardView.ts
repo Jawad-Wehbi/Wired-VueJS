@@ -12,15 +12,31 @@ export default defineComponent({
       result: [] as TaskRecord[],
     };
   },
-  async mounted() {
-    try {
-      const response = await get('/tasks');
-      console.log('========>', response.data);
-      this.result = response.data.data.items;
-      console.log('Result :>> ', this.result);
-    } catch (error) {
-      console.error(error);
-    }
+  mounted() {
+    this.getAllTasks();
+  },
+  methods: {
+    reloadAllTasks() {
+      console.log('reloadAllTasks :>> ', this.getAllTasks());
+      console.log('Test :>> ');
+      this.getAllTasks();
+    },
+    async getAllTasks() {
+      try {
+        const response = await get('/tasks');
+        console.log('========>', response.data);
+        this.result = response.data.data.items;
+        console.log('Result :>> ', this.result);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  watch: {
+    reloadResultChanges() {
+      console.log('Result Changed :>> ', this.result);
+      this.result;
+    },
   },
   components: {
     NavigationBar,

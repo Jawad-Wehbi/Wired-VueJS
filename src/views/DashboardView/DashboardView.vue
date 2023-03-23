@@ -4,7 +4,7 @@
     <div class="wired-page">
       <TimerSection v-if="result.length" :tasks="result" />
       <ButtonSection />
-      <TasksBoard />
+      <TasksBoard @reloadTasks="reloadAllTasks()" />
       <TeamSection />
     </div>
   </section>
