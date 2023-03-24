@@ -1,5 +1,5 @@
+import { todayDataHelper } from '@/helpers/utils';
 import { TaskRecord } from 'DataTypes';
-import { isSameDay, parseISO } from 'date-fns';
 import { defineComponent, PropType } from 'vue';
 import TimerComponent from '../TimerComponent/TimerComponent.vue';
 export default defineComponent({
@@ -23,11 +23,7 @@ export default defineComponent({
   computed: {
     todayData() {
       if (this.tasksArray !== undefined) {
-        const today = new Date();
-        return this.tasksArray.filter((items) => {
-          const itemDate = parseISO(items.first_log.start_date);
-          return isSameDay(today, itemDate);
-        });
+        return todayDataHelper(this.tasksArray);
       }
     },
     TotalBreakTime(): string {

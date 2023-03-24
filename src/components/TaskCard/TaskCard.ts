@@ -61,7 +61,10 @@ export default defineComponent({
 
     //
     async playTask(id: number) {
+      this.playTaskApiCall(id);
       this.$emit('reloadAllTasks');
+    },
+    async playTaskApiCall(id: number) {
       try {
         if (this.runningTaskId != 0) {
           const pauseresponse = await post(`/tasks/${this.runningTaskId}/stop`);

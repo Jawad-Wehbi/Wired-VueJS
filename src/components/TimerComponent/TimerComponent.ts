@@ -1,5 +1,6 @@
+import { todayDataHelper } from '@/helpers/utils';
 import { TaskRecord } from 'DataTypes';
-import { parseISO, isSameDay, differenceInSeconds, format } from 'date-fns';
+import { parseISO, differenceInSeconds, format } from 'date-fns';
 import { defineComponent, PropType } from 'vue';
 import { addSecondsToTime } from '../../helpers/timeFormatter';
 
@@ -50,11 +51,7 @@ export default defineComponent({
     },
     todayData() {
       if (this.tasksArray !== undefined) {
-        const today = new Date();
-        return this.tasksArray.filter((items) => {
-          const itemDate = parseISO(items.first_log.start_date);
-          return isSameDay(today, itemDate);
-        });
+        return todayDataHelper(this.tasksArray);
       }
     },
     //

@@ -65,6 +65,8 @@
     <div class="text-area">
       <v-textarea
         placeholder="Notes"
+        no-resize
+        rows="4"
         bg-color="white"
         v-model="noteMessage"
         @blur="saveTask(TaskDetails.id)"

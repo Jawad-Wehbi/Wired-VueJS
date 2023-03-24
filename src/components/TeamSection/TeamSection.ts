@@ -1,6 +1,6 @@
+import { todayDataHelper } from '@/helpers/utils';
 import { get } from '@/service';
 import { TaskRecord } from 'DataTypes';
-import { isSameDay, parseISO } from 'date-fns';
 import { defineComponent } from 'vue';
 import MembersBoard from '../MembersBoard/MembersBoard.vue';
 import MembersTasks from '../MembersTasks/MembersTasks.vue';
@@ -29,11 +29,7 @@ export default defineComponent({
   },
   computed: {
     todayData(): TaskRecord[] {
-      const today = new Date();
-      return this.result.filter((items) => {
-        const itemDate = parseISO(items.first_log.start_date);
-        return isSameDay(today, itemDate);
-      });
+      return todayDataHelper(this.result);
     },
     memberData(): TaskRecord[] {
       return this.todayData.filter((todayMemberTasks) => {

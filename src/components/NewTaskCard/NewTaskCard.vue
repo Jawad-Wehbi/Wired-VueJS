@@ -1,12 +1,14 @@
 <script lang="ts" src="./NewTaskCard"></script>
 
 <template>
-  New Task
+  <div class="new-task">New Task</div>
   <v-form ref="form" class="form">
     <v-select
       v-model="selectedProject"
       id="selcetProject"
       label="Select Project"
+      density="compact"
+      variant="underlined"
       required
       class="form-item"
       :items="projects"
@@ -21,6 +23,8 @@
       id="selcetCategory"
       label="Select Category"
       :style="{ display: selectDisplay }"
+      density="compact"
+      variant="underlined"
       required
       class="form-item"
       :items="categories"
@@ -30,15 +34,14 @@
       </option>
     </v-select>
     <div class="">
-      <v-btn
-        color="success"
-        class="form-item"
+      <button
+        class="form-item create-task-button"
         :disabled="isCategorySelected"
         @click="createNewTask()"
       >
         <v-icon class="white" icon="mdi-pencil"></v-icon>
-        Create
-      </v-btn>
+        Create Task
+      </button>
     </div>
   </v-form>
 </template>

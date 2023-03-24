@@ -1,6 +1,6 @@
 nav {
   align-items: center;
-  height: 56px;
+  height: 64px;
   background-color: rgb(63, 81, 181);
   padding: 4px 16px;
   justify-content: space-between;
@@ -9,11 +9,12 @@ nav {
   z-index: 0;
   align-content: center;
 }
-
+.wired-font{
+  font-size: 20px;
+  @include flex-box(row, center, center);
+}
 .right-sec {
-  display: flex;
-  align-content: center;
-  justify-content: center;
+  @include flex-box(row, center, center);
   color:#008000
 }
 
@@ -46,6 +47,7 @@ nav {
   width: 111.5px;
   padding: 0px 12.5px;
   margin: 14px 8px;
+  background-color: $secondary-color
 }
 .title {
   @include flex-box(row, flex-start, center);

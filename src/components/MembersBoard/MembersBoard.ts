@@ -5,6 +5,7 @@ import TaskCard from '../TaskCard/TaskCard.vue';
 import ButtonSection from '../ButtonSection/ButtonSection.vue';
 import { TaskRecord } from 'DataTypes';
 import { isSameDay, parseISO } from 'date-fns';
+import { todayDataHelper } from '@/helpers/utils';
 export default defineComponent({
   data() {
     return {
@@ -61,15 +62,7 @@ export default defineComponent({
 
   computed: {
     todayData(): TaskRecord[] {
-      const today = new Date();
-      return this.activeMembers
-        .filter((items) => {
-          const itemDate = parseISO(items.first_log.start_date);
-          return isSameDay(today, itemDate);
-        })
-        .filter((items) => {
-          return items.status !== 'finished';
-        });
+      return todayDataHelper(this.activeMembers);
     },
     plansData(): TaskRecord[] {
       const planningArray = [] as TaskRecord[];

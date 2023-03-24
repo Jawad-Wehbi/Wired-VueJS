@@ -3,7 +3,7 @@ import NewTaskCard from '../../components/NewTaskCard/NewTaskCard.vue';
 import TaskCard from '../../components/TaskCard/TaskCard.vue';
 import { get } from '../../../src/service';
 import { TaskRecord } from '../../../DataTypes';
-import { parseISO, isSameDay } from 'date-fns';
+import { todayDataHelper } from '@/helpers/utils';
 
 export default defineComponent({
   data() {
@@ -18,11 +18,7 @@ export default defineComponent({
   },
   computed: {
     todayData(): TaskRecord[] {
-      const today = new Date();
-      return this.result.filter((items) => {
-        const itemDate = parseISO(items.first_log.start_date);
-        return isSameDay(today, itemDate);
-      });
+      return todayDataHelper(this.result);
     },
   },
   methods: {
@@ -48,4 +44,9 @@ export default defineComponent({
     },
   },
   components: { NewTaskCard, TaskCard },
+  watch: {
+    reloadResults() {
+      this.result;
+    },
+  },
 });

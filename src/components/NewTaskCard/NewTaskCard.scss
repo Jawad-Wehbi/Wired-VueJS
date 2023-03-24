@@ -1,7 +1,21 @@
-.select{
+.new-task {
+  margin-bottom: 20px;
+}
+.select {
   width: 304px;
   height: 26px;
 }
-.form-item{
-  width:304px
+.form-item {
+  width: 304px;
+}
+.create-task-button {
+  width: 136px;
+  height: 36px;
+  background-color: $secondary-color;
+  border-radius: 5px;
+  color: $white;
+  font-size: 12px;
+}
+.form {
+  @include flex-box(column, space-evenly, center);
 }

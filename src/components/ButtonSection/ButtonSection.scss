@@ -41,7 +41,8 @@
 .add-shortcut-overlay {
   background-color: $white;
   width: 640px;
-  height: 228px;
+  height: auto;
+  padding: 0px 24px 20px;
 }
 .add-shortcut-title {
   color: $white;
@@ -49,19 +50,39 @@
   width: 640px;
   height: 48px;
   padding: 0px 16px;
-  @include flex-box(row, flex-start, center);
+  @include flex-box(row, space-between, center);
 }
 .create-shortcut {
   margin-left: 5px;
   font-size: 20px;
 }
 .create-shortcut-form {
-  @include flex-box(column, space-evenly, center);
+  @include flex-box(column, space-between, center);
   flex-flow: column;
+  margin-top: 20px;
+  padding: 12px;
 }
 .show-more-bottom {
   border: 0;
   height: 52px;
   margin-top: 1px;
   @include flex-box(row, space-around, center);
+}
+.form-item {
+  width: 485px;
+}
+.v-select-div {
+  height: 52px;
+}
+.add-shortcut-button {
+  width: 176px;
+  height: 36px;
+  background-color: $secondary-color;
+  border-radius: 5px;
+  color: $white;
+  font-size: 12px;
+  @include flex-box(row, space-evenly, center);
+}
+.left-side{
+  @include flex-box(row, space-evenly, center);
 }

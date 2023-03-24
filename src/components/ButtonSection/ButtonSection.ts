@@ -89,14 +89,14 @@ export default defineComponent({
     },
     async createNewShortcut() {
       try {
-        const newShortcut = await post('/user_shortcuts', {
+        const NewShortcut = await post('/user_shortcuts', {
           data: {
             project_name: this.selectedProject,
             category_name: this.selectedCategory,
           },
           shortcut_type: 'task_start',
         });
-        this.result = newShortcut.data.data;
+        this.result = NewShortcut.data.data;
       } catch (error) {
         console.error(error);
       }
@@ -107,6 +107,7 @@ export default defineComponent({
     getProjectInfo(): void {
       const newArray = getProjectInfo(this.result, this.selectedProject);
       this.projectCategoriesArray = newArray[0];
+      console.log('SELECTED PROJECT OBJ', this.projectCategoriesArray);
       this.getProjectCategories(this.projectCategoriesArray);
     },
     getProjectCategories(projectName: projectInfo): string[] {

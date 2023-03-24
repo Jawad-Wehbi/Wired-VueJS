@@ -6,48 +6,64 @@
       :styles="{ color: '#F51B5', backgroundColor: 'white' }"
       @click="addShortcutDialog = true"
     /><v-dialog v-model="addShortcutDialog" width="auto" center>
-      <div class="add-shortcut-overlay">
-        <div class="add-shortcut-title">
+      <div class="add-shortcut-title">
+        <div class="left-side">
           <v-icon icon="mdi-arrow-right-top" size="small"></v-icon>
           <div class="create-shortcut">Create Shortcut</div>
         </div>
+        <div>
+          <v-icon
+            icon="mdi-close"
+            size="small"
+            @click="addShortcutDialog = false"
+          ></v-icon>
+        </div>
+      </div>
+      <div class="add-shortcut-overlay">
         <div class="create-shortcut-form">
-          <v-select
-            v-model="selectedProject"
-            id="selcetProject"
-            label="Select Project"
-            required
-            class="form-item"
-            :items="projects"
-          >
-            <option v-for="option in projects" :value="option">
-              {{ option }}
-            </option>
-          </v-select>
-
-          <v-select
-            v-model="selectedCategory"
-            id="selcetCategory"
-            label="Select Category"
-            :style="{ display: selectDisplay }"
-            required
-            class="form-item"
-            :items="categories"
-          >
-            <option v-for="option in projects" :value="option">
-              {{ option }}
-            </option>
-          </v-select>
-          <div class="">
-            <v-btn
-              color="success"
+          <div class="v-select-div">
+            <v-select
+              v-model="selectedProject"
+              id="selcetProject"
+              label="Select Project"
+              density="compact"
+              variant="underlined"
+              required
               class="form-item"
+              :items="projects"
+            >
+              <option v-for="option in projects" :value="option">
+                {{ option }}
+              </option>
+            </v-select>
+          </div>
+
+          <div class="v-select-div">
+            <v-select
+              v-model="selectedCategory"
+              id="selcetCategory"
+              label="Select Category"
+              density="compact"
+              variant="underlined"
+              :style="{ display: selectDisplay }"
+              required
+              class="form-item"
+              :items="categories"
+            >
+              <option v-for="option in projects" :value="option">
+                {{ option }}
+              </option>
+            </v-select>
+          </div>
+          <div class="add-shortcut-button">
+            <button
+              class="create"
               :disabled="isCategorySelected"
               @click="createNewShortcut()"
             >
               <v-icon class="white" icon="mdi-pencil"></v-icon>
-              Create
-            </v-btn>
+              ADD SHORTCUT
+            </button>
           </div>
         </div>
       </div>

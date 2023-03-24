@@ -13,13 +13,13 @@ export default defineComponent({
     };
   },
   mounted() {
-    this.getAllTasks();
+    this.getTasks();
   },
   methods: {
     reloadAllTasks() {
-      this.getAllTasks();
+      this.getTasks();
     },
-    async getAllTasks() {
+    async getTasks() {
       try {
         const allTasks = await get('/tasks');
         this.result = allTasks.data.data.items;

@@ -28,10 +28,9 @@
               <div class="first input">
                 <div>
                   <v-text-field
-                    model-value="{first_name}"
+                    v-model="first_name"
                     label="First Name"
                     variant="outlined"
-                    readonly
                     class="text-field"
                   ></v-text-field>
                 </div>
@@ -42,10 +41,9 @@
               <div class="second input">
                 <div>
                   <v-text-field
-                    model-value="{last_name}"
+                    v-model="last_name"
                     label="Last Name"
                     variant="outlined"
-                    readonly
                     class="text-field"
                   ></v-text-field>
                 </div>
@@ -54,7 +52,7 @@
                 </div>
               </div>
               <div class="save-reset-buttons">
-                <button class="save button">
+                <button class="save button" @click="editName()">
                   <v-icon icon="mdi-content-save-edit"></v-icon>SAVE
                 </button>
                 <button class="reset button">
