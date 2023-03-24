@@ -120,17 +120,29 @@
             buttonName="CUSTOM TASKS"
             :styles="{ color: 'white', backgroundColor: '#1976d2' }"
             v-bind="props"
-            @click="getCustomShortcuts"
+            @open-on-hover="getCustomShortcuts"
           />
         </template>
 
-        <v-list>
-          <v-list-item v-for="(item, index) in items" :key="index">
-            <v-list-item-title
-              >{{ item.data.project_name }}({{
-                item.data.category_name
-              }})</v-list-item-title
-            >
+        <v-list class="v-list">
+          <v-list-item
+            @click="
+              createNewTask(item.data.project_name, item.data.category_name)
+            "
+            v-for="(item, index) in items"
+            :key="index"
+            ><div class="v-list-item">
+              <div class="v-list-item-title">
+                <v-list-item-title
+                  >{{ item.data.project_name }}({{
+                    item.data.category_name
+                  }})</v-list-item-title
+                >
+              </div>
+              <div class="v-list-item-icon">
+                <v-icon icon="mdi-delete" size="x-small"></v-icon>
+              </div>
+            </div>
           </v-list-item>
         </v-list>
       </v-menu>

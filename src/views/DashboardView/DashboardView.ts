@@ -10,10 +10,12 @@ export default defineComponent({
   data() {
     return {
       result: [] as TaskRecord[],
+      taskId: 0,
     };
   },
   mounted() {
     this.getTasks();
+    this.runningTaskId();
   },
   methods: {
     reloadAllTasks() {
@@ -23,9 +25,18 @@ export default defineComponent({
       try {
         const allTasks = await get('/tasks');
         this.result = allTasks.data.data.items;
+        console.log('this.result :>> ', this.result);
       } catch (error) {
         console.error(error);
       }
+    },
+    runningTaskId(): void {
+      console.log('this.runningTaskId :>> ', this.result);
+      this.result.filter((task) => {
+        if (task.status === 'started') {
+          this.taskId = task.id;
+        }
+      });
     },
   },
   watch: {

@@ -1,6 +1,6 @@
 import { get, post, put } from '@/service';
 import { projectInfo, Shortcuts, TaskRecord } from 'DataTypes';
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import MainButton from '../MainButton/MainButton.vue';
 import TaskCard from '../TaskCard/TaskCard.vue';
 import NewTaskCard from '../NewTaskCard/NewTaskCard.vue';
@@ -24,6 +24,12 @@ export default defineComponent({
       items: [] as Shortcuts[],
     };
   },
+  props: {
+    runningTaskId: {
+      type: Number,
+      required: true,
+    },
+  },
   computed: {
     selectDisplay(): string {
       return this.selectedProject ? 'block' : 'none';
@@ -33,6 +39,7 @@ export default defineComponent({
     },
   },
   async mounted() {
+    this.getCustomShortcuts();
     try {
       const response = await get('/team/projects');
       this.result = response.data.data;
@@ -97,6 +104,27 @@ export default defineComponent({
           shortcut_type: 'task_start',
         });
         this.result = NewShortcut.data.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async createNewTask(project_name: string, category_name: string) {
+      if (this.runningTaskId !== 0) {
+        const pauseresponse = await post(`/tasks/${this.runningTaskId}/stop`);
+        this.result = pauseresponse.data.data.items;
+      }
+      try {
+        const response = await post('/tasks', {
+          project: project_name,
+          category: category_name,
+          due_date: '14/10/2021 07:20',
+          estimated_time_hours: 0,
+          estimated_time_minutes: 0,
+          running: true,
+          limit: 0,
+          offset: 0,
+        });
+        this.result = response.data.data;
       } catch (error) {
         console.error(error);
       }

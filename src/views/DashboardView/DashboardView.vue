@@ -3,7 +3,7 @@
     <NavigationBar />
     <div class="wired-page">
       <TimerSection v-if="result.length" :tasks="result" />
-      <ButtonSection />
+      <ButtonSection :runningTaskId="taskId" />
       <TasksBoard @reloadTasks="reloadAllTasks()" />
       <TeamSection />
     </div>

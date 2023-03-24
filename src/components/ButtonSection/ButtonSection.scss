@@ -86,3 +86,16 @@
 .left-side{
   @include flex-box(row, space-evenly, center);
 }
+.v-list-item{
+  margin-inline: 0px;
+  padding-inline: 0px;
+  color: #727478;
+  @include flex-box(row, space-between, center);
+}
+.v-list{
+  width: 220px;
+  @include flex-box(column, space-between, center);
+}
+.v-list-item-icon{
+  right: 0px;
+}
